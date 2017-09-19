@@ -1,4 +1,4 @@
-package elong.android.flight.test.activity;
+package elong.android.domesticflight.activity;
 
 /**
  * Hello world!

@@ -11,8 +11,8 @@ import java.util.Properties;
 public class Parameters {
 	String isautogetdevice;//是否自动获取手机设备号
 	String defalutDeviceName;//默认手机设备号
-	public String username; //测试账号
-	public String password;//密码
+	public static String username; //测试账号
+	public static String password;//密码
 	public Parameters(){
 		Properties pro=new Properties();
 		File directory=new File("");
@@ -20,7 +20,9 @@ public class Parameters {
 		try {
 			String proPath=directory.getCanonicalPath();//获取工程路径
 			System.out.println(proPath);
-			FileInputStream fis=new FileInputStream(proPath+"/src/main/config/config.properties");
+			FileInputStream fis=new FileInputStream(proPath+"/src/main/resources/config.properties");
+			//FileInputStream fis=new FileInputStream("classpath:config.properties");
+
 			pro.load(fis);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
