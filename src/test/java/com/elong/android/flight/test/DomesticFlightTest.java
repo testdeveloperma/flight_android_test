@@ -2,7 +2,6 @@ package com.elong.android.flight.test;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

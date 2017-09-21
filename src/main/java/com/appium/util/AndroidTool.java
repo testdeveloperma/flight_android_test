@@ -44,10 +44,7 @@ public class AndroidTool {
 		try {
 			System.out.println(cmd);
 			Process p = Runtime.getRuntime().exec(cmd);
-			// ProcessBuilder pb= new
-			// ProcessBuilder("/Users/user/android-sdk-macosx/platform-tools/adb","shell
-			// screencap -p /sdcard/screen.png");
-			// Process p = pb.start();
+			
 			int exitcode = p.waitFor();
 			System.out.println(exitcode);
 		} catch (Exception e) {
