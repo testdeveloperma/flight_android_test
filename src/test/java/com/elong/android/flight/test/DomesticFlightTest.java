@@ -13,17 +13,8 @@ import org.testng.annotations.Test;
 import com.appium.util.AndroidTool;
 import com.appium.util.AppiumServer;
 import com.appium.util.ExcelData;
-
-import elong.android.domesticflight.activity.PageDomesticCabinDetail;
-import elong.android.domesticflight.activity.PageFlightFirstPage;
-import elong.android.domesticflight.activity.PageDomesticFlightList;
-import elong.android.domesticflight.activity.PageLogin;
-import elong.android.domesticflight.activity.PageOrderConfirm;
 import elong.android.domesticflight.bean.CabinDetailData;
 import elong.android.domesticflight.bean.FlightListData;
-import elong.android.domesticflight.activity.PageDomesticOrderEdit;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
 import jxl.read.biff.BiffException;
 
 public class DomesticFlightTest extends BasicTestCase {
@@ -54,7 +45,7 @@ public class DomesticFlightTest extends BasicTestCase {
 		
 	}
 	
-	@Test
+	@Test(description="测试case名称")
 	public void test2() {
 
 		pm.getPageDomesticFlightList().selectFlight(5);

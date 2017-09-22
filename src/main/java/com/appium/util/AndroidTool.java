@@ -34,13 +34,13 @@ public class AndroidTool {
 	 *            保存的图片名称
 	 */
 	public static void screencap(String picturename) {
-		String cmd = "sh ../classes/screencap.sh";
+	
 		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 		String agentPath = classUrl.getPath();
 
-		cmd = "sh " + agentPath + "screencap.sh " + picturename;
-		String adb = "/Users/user/android-sdk-macosx/platform-tools/adb";
-		// cmd = adb + " shell screencap -p /sdcard/screen.png";
+		String cmd = "sh " + agentPath + "screencap.sh " + picturename;  //shell
+		cmd = agentPath + "screencap.bat " + picturename;  //批处理
+	//	String adb = "/Users/user/android-sdk-macosx/platform-tools/adb";
 		try {
 			System.out.println(cmd);
 			Process p = Runtime.getRuntime().exec(cmd);
