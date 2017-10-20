@@ -1,20 +1,33 @@
 package elong.android.domesticflight.activity;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
+
 import com.appium.util.AndroidTool;
 
 import elong.android.domesticflight.bean.CabinDetailData;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageDomesticCabinDetail extends AndroidTool {
 	AndroidDriver driver;
+	
+	@AndroidFindBy(xpath="//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/lv_flights_info\"]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]")
 	WebElement bookButton; // 预定按钮
-	WebElement price; // 票价控件
-	private WebElement departCity; // 出发城市
-	private WebElement arriveCity; // 到达城市
-	private WebElement departDate; // 出发日期
-	private WebElement departTime; // 出发日期
-	private WebElement arriveTime; // 出发日期
+	@AndroidFindBy(id="com.elong.android.flight:id/main_price")
+	List<MobileElement> price; // 票价控件
+	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_depart_city")
+	private MobileElement departCity; // 出发城市
+	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_arrive_city")
+	private MobileElement arriveCity; // 到达城市'
+	@AndroidFindBy(id="com.elong.android.flight:id/common_head_title")
+	private MobileElement departDate; // 出发日期
+	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_time_start")
+	private MobileElement departTime; // 出发日期
+	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_time_end")
+	private MobileElement arriveTime; // 出发日期
 
 	public PageDomesticCabinDetail(AndroidDriver driver) {
 		super(driver);
@@ -22,24 +35,7 @@ public class PageDomesticCabinDetail extends AndroidTool {
 
 	}
 
-	public void initViews() {
-		try {
-			bookButton = driver.findElementByXPath(
-					"//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/lv_flights_info\"]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]");
-			price = driver.findElementsById("com.elong.android.flight:id/main_price").get(0);
-			departCity = driver.findElementById("com.elong.android.flight:id/tv_flight_number_depart_city");
-			arriveCity = driver.findElementById("com.elong.android.flight:id/tv_flight_number_arrive_city");
-			departDate = driver.findElementById("com.elong.android.flight:id/common_head_title");
-			departTime = driver.findElementById("com.elong.android.flight:id/tv_flight_number_time_start");
-			arriveTime = driver.findElementById("com.elong.android.flight:id/tv_flight_number_time_end");
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			AndroidTool.screencap("domestiCabinDetail");
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	public CabinDetailData getCabinDetailData() {
 		CabinDetailData cabinDetailData = new CabinDetailData();
@@ -53,7 +49,7 @@ public class PageDomesticCabinDetail extends AndroidTool {
 
 	public void getFlightTicketPrice() {
 		int ticketPrice = 0;
-		String priceText = price.getText();
+		String priceText = price.get(0).getText();
 		System.out.println(priceText);
 		// Integer.valueOf(priceText.substring(1));
 		// System.out.println(ticketPrice+"");

@@ -32,9 +32,9 @@ public class BasicTestCase {
 		Assert.assertTrue(foundTabHomeActivity);
 		
 		//进入机票首页
-		WebElement selectAir=driver.findElementByXPath("//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.view.View[1]");
+		//WebElement selectAir=driver.findElementByXPath("//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.view.View[1]");
 		//测试包
-		//WebElement selectAir=driver.findElementByXPath("//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.widget.RelativeLayout[1]");
+		WebElement selectAir=driver.findElementByXPath("//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.widget.RelativeLayout[1]");
 		
 				//findElementByAccessibilityId("com.elong.android.home:id/home_module_flight");		
 		

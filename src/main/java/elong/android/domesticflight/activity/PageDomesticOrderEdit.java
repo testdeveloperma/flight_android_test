@@ -6,12 +6,16 @@ import org.openqa.selenium.WebElement;
 
 import com.appium.util.AndroidTool;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageDomesticOrderEdit extends AndroidTool {
 	AndroidDriver driver;
-	WebElement next;
-	WebElement addCustomer;
+	@AndroidFindBy(id="com.elong.android.flight:id/next")
+	MobileElement next;
+	@AndroidFindBy(name="添加")
+	MobileElement addCustomer;
 
 	public PageDomesticOrderEdit(AndroidDriver driver) {
 		super(driver);
@@ -21,17 +25,7 @@ public class PageDomesticOrderEdit extends AndroidTool {
 
 	}
 
-	public void initViews() {
-		try {
-			next = driver.findElementById("com.elong.android.flight:id/next");
-			addCustomer = driver.findElementByAndroidUIAutomator("new UiSelector().text(\"添加\")");
-		} catch (Exception e) {
-			screencap("orderedit");
-			e.printStackTrace();
-		}
-
-		// findElementByName("添加乘机人");
-	}
+	
 
 	public void addCustomer() throws InterruptedException, IOException {
 		addCustomer.click();

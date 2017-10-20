@@ -1,5 +1,9 @@
 package com.appium.util;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.PageFactory;
+
 import elong.android.domesticflight.activity.PageAddCustomer;
 import elong.android.domesticflight.activity.PageDomesticCabinDetail;
 import elong.android.domesticflight.activity.PageDomesticFlightList;
@@ -11,6 +15,7 @@ import elong.android.domesticflight.activity.PageOrderPay;
 import elong.android.domesticflight.activity.PageSelectCity;
 import elong.android.domesticflight.activity.PageSelectCustomer;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class PageManager {
 	AndroidDriver driver;
@@ -35,10 +40,12 @@ public class PageManager {
 	
 	PageSelectCustomer pageSelectCustomer;
 	
+	AppiumFieldDecorator decorator;
 	
 	public PageManager(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
+		decorator = new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS);
 	
 	}
 
@@ -58,8 +65,7 @@ public class PageManager {
 		if(pageDomesticFlightList == null){
 			pageDomesticFlightList = new PageDomesticFlightList(driver);
 		}
-		
-		pageDomesticFlightList.initViews();
+		PageFactory.initElements(decorator, pageDomesticFlightList);
 		
 		return pageDomesticFlightList;
 	}
@@ -70,7 +76,7 @@ public class PageManager {
 			pageDomesticCabinDetail = new PageDomesticCabinDetail(driver);
 		}
 		
-		pageDomesticCabinDetail.initViews();
+		PageFactory.initElements(decorator, pageDomesticCabinDetail);
 		
 		return pageDomesticCabinDetail;
 	}
@@ -81,8 +87,7 @@ public class PageManager {
 			pageDomesticOrderEdit = new PageDomesticOrderEdit(driver);
 		}
 		
-		pageDomesticOrderEdit.initViews();
-		
+		PageFactory.initElements(decorator, pageDomesticOrderEdit);		
 		return pageDomesticOrderEdit;
 	}
 
@@ -103,8 +108,7 @@ public class PageManager {
 			pageOrderConfirm = new PageOrderConfirm(driver);
 		}
 		
-		pageOrderConfirm.initViews();
-		
+		PageFactory.initElements(decorator, pageOrderConfirm);		
 		return pageOrderConfirm;
 	}
 
@@ -115,8 +119,7 @@ public class PageManager {
 			pageOrderPay = new PageOrderPay(driver);
 		}
 		
-		pageOrderPay.initViews();
-		
+		PageFactory.initElements(decorator, pageOrderPay);		
 		return pageOrderPay;
 	}
 
@@ -126,8 +129,7 @@ public class PageManager {
 			pageSelectCity = new PageSelectCity(driver);
 		}
 		
-		pageSelectCity.initViews();
-		
+		PageFactory.initElements(decorator, pageSelectCity);		
 		return pageSelectCity;
 	}
 
@@ -137,8 +139,7 @@ public class PageManager {
 			pageSelectCustomer = new PageSelectCustomer(driver);
 		}
 		
-		pageSelectCustomer.initViews();
-		
+		PageFactory.initElements(decorator, pageSelectCustomer);		
 		return pageSelectCustomer;
 	}
 
@@ -147,8 +148,7 @@ public class PageManager {
 			pageFlightFirstPage = new PageFlightFirstPage(driver);
 		}
 		
-		pageFlightFirstPage.initViews();
-		
+		PageFactory.initElements(decorator, pageFlightFirstPage);		
 		return pageFlightFirstPage;
 	}
 

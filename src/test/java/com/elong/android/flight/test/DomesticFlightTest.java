@@ -60,7 +60,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	public void test3() {
 		pm.getPageDomesticCabinDetail().clickBookButton();
 		// 登录
-		pm.getPageLogin().login();
+		//pm.getPageLogin().login();
 
 		// oe.addCustomer();
 		Assert.assertEquals(cabinDetailData.getDepartCity(), flightListData.getDepartCity());

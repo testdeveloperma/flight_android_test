@@ -2,16 +2,19 @@ package elong.android.domesticflight.activity;
 
 import java.io.IOException;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 import org.openqa.selenium.WebElement;
 
 import com.appium.util.AndroidTool;
 
 public class PageSelectCustomer extends AndroidTool{
-	
-	private WebElement addCustomer;
-	WebElement ok_button;
+	@AndroidFindBy(id="com.elong.android.flight:id/add_customer_button_flight")
+	private MobileElement addCustomer;
+	@AndroidFindBy(id="com.elong.android.flight:id/flight_add_customer_ok")
+	MobileElement ok_button;
 	AndroidDriver driver;
 	public PageSelectCustomer(AndroidDriver driver){
 		super(driver);
@@ -19,23 +22,7 @@ public class PageSelectCustomer extends AndroidTool{
 		
 	}
 	
-	public void initViews(){
-		
-		try {
-			
-			addCustomer=driver.findElementById("com.elong.android.flight:id/add_customer_button_flight");		
-			ok_button=driver.findElementById("com.elong.android.flight:id/flight_add_customer_ok");
-		
-		} catch (Exception e) {
-			
-			AndroidTool.screencap("selectCustomer");
-			e.printStackTrace();
-			
-		}
-	
-	
-	}
-	
+
 	
 	public void addCustomer() throws InterruptedException, IOException {
 		// TODO Auto-generated method stub

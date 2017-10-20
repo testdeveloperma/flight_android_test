@@ -9,39 +9,32 @@ import org.openqa.selenium.WebElement;
 import com.appium.util.AndroidTool;
 import com.appium.util.PageManager;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageFlightFirstPage extends AndroidTool{
 	AndroidDriver driver;
 	PageManager pm;
-	WebElement searchButton;		//查询按钮
-	WebElement interFlightTab;	//国际标签
-	WebElement departCity;		//出发城市按钮
-	WebElement arriveCity;		//到达城市按钮
+	@AndroidFindBy(id="com.elong.android.flight:id/flightsearch_submit")
+	MobileElement searchButton;		//查询按钮
+	@AndroidFindBy(id="com.elong.android.flight:id/rb_search_tab_global")
+	MobileElement interFlightTab;	//国际标签
+	@AndroidFindBy(id="com.elong.android.flight:id/flightssearch_leavecity")
+	MobileElement departCity;		//出发城市按钮
+	@AndroidFindBy(id="com.elong.android.flight:id/flightssearch_arrivecity")
+	MobileElement arriveCity;		//到达城市按钮
 	boolean foundActivity;
-	WebElement departDate;		//出发日期标签
+	@AndroidFindBy(id="com.elong.android.flight:id/flightsearch_leave_date")
+	MobileElement departDate;		//出发日期标签
 	public PageFlightFirstPage(AndroidDriver driver) {
 		super(driver);
 		this.driver = driver;
-		
+		pm = new PageManager(driver);
 	}
 	
 	
-	public void initViews(){
-		try {
-			searchButton=driver.findElementById("com.elong.android.flight:id/flightsearch_submit");
-			interFlightTab=driver.findElementById("com.elong.android.flight:id/rb_search_tab_global");
-			departCity=driver.findElementById("com.elong.android.flight:id/flightssearch_leavecity");
-			arriveCity=driver.findElementById("com.elong.android.flight:id/flightssearch_arrivecity");
-			departDate = driver.findElementById("com.elong.android.flight:id/flightsearch_leave_date");
-			//com.elong.android.flight:id/flightssearch_arrivecity
-			pm = new PageManager(driver);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			AndroidTool.screencap("flightFirstPage");
-			e.printStackTrace();
-		}
-	}
+
 	public void selectDepartDate(){
 		departDate.click();
 		try {
