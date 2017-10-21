@@ -15,6 +15,7 @@ import com.appium.util.AppiumServer;
 import com.appium.util.ExcelData;
 import elong.android.domesticflight.bean.CabinDetailData;
 import elong.android.domesticflight.bean.FlightListData;
+import io.appium.java_client.android.AndroidKeyCode;
 import jxl.read.biff.BiffException;
 
 public class DomesticFlightTest extends BasicTestCase {
@@ -35,7 +36,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	 * @throws InterruptedException
 	 * @throws IOException
 	 */
-	@Test(dataProvider = "city")
+	@Test(dataProvider = "city",description="选择城市和日期搜索，进入航班列表")
 	public void test1(HashMap<String, String> data) throws InterruptedException, IOException {
 		System.out.println(data.toString());
 		String departCity = String.valueOf(data.get("departCity"));
@@ -45,10 +46,10 @@ public class DomesticFlightTest extends BasicTestCase {
 		
 	}
 	
-	@Test(description="测试case名称")
+	@Test(description="选择航班列表的第三个航班")
 	public void test2() {
 
-		pm.getPageDomesticFlightList().selectFlight(5);
+		pm.getPageDomesticFlightList().selectFlight(2);
 		cabinDetailData = pm.getPageDomesticCabinDetail().getCabinDetailData();
 		pm.getPageDomesticCabinDetail().getFlightTicketPrice();
 		
@@ -56,7 +57,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	}
 
 
-	@Test
+	@Test(description="选择自营第一个舱位，点击预定进入填写页")
 	public void test3() {
 		pm.getPageDomesticCabinDetail().clickBookButton();
 		// 登录
@@ -72,33 +73,24 @@ public class DomesticFlightTest extends BasicTestCase {
 	
 
 	
-//	@Test
-//	public void test4() {
-//		pm.getPageDomesticOrderEdit().createOrder();
-//
-//		// PageOrderConfirm orderConfirm = new PageOrderConfirm(driver);
-//		pm.getPageOrderConfirm().gotoPay();
-//
-//		driver.sendKeyEvent(AndroidKeyCode.BACK);
-//		
-//		WebElement lookOrder = null;
-//		try {
-//			Thread.sleep(1000);
-//			// 查看订单
-//			 lookOrder = driver.findElementById("com.dp.android.elong:id/dialog_positive_button");
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			AndroidTool.screencap("orderpay");
-//			e1.printStackTrace();
-//		}
-//		lookOrder.click();
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
+	@Test
+	public void test4() {
+		pm.getPageDomesticOrderEdit().createOrder();
+
+		// PageOrderConfirm orderConfirm = new PageOrderConfirm(driver);
+		pm.getPageOrderConfirm().gotoPay();
+
+	//	driver.sendKeyEvent(AndroidKeyCode.BACK);
+		pm.getPageOrderPay().goBack();
+		pm.getPageOrderPay().gotoOrderDetail();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 }

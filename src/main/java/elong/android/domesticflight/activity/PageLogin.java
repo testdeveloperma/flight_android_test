@@ -5,32 +5,27 @@ import org.openqa.selenium.WebElement;
 import com.appium.util.AndroidTool;
 import com.appium.util.Parameters;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageLogin {
 	AndroidDriver driver;
-	WebElement username;
-	WebElement password;
-	WebElement loginButton;
-	WebElement loginwithPassword;
+	
+	@AndroidFindBy(id="com.dp.android.elong:id/login_phone")
+	MobileElement username;
+	@AndroidFindBy(id="com.dp.android.elong:id/login_password")
+	MobileElement password;
+	@AndroidFindBy(id="com.dp.android.elong:id/tv_login")
+	MobileElement loginButton;
+	@AndroidFindBy(id="com.dp.android.elong:id/tv_switch_login_way")
+	MobileElement loginwithPassword;
 	public PageLogin(AndroidDriver driver) {
 		// TODO Auto-generated method stub
 		this.driver = driver;
 	}
 	
-	public void initViews(){
-		try {
-			loginwithPassword=driver.findElementById("com.dp.android.elong:id/tv_switch_login_way");
-			loginwithPassword.click();
-			username=driver.findElementById("com.dp.android.elong:id/login_phone");
-			password=driver.findElementById("com.dp.android.elong:id/login_password");
-			loginButton=driver.findElementById("com.dp.android.elong:id/tv_login");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			AndroidTool.screencap("login");
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public void login(){
 		//Parameters userdata=new Parameters();

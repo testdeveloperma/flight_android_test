@@ -2,11 +2,11 @@ package elong.android.domesticflight.bean;
 
 public class CabinDetailData {
 	
-	private String departCity; // 出发城市
+	private String departCity; // 顶部出发城市
 
-	private String arriveCity; // 到达城市
+	private String arriveCity; // 顶部到达城市
 
-	private String departDate; // 出发日期
+	private String departDate; // 顶部出发日期
 
 	private String departTime; // 出发时间：时分
 

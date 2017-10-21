@@ -9,6 +9,7 @@ import elong.android.domesticflight.activity.PageDomesticCabinDetail;
 import elong.android.domesticflight.activity.PageDomesticFlightList;
 import elong.android.domesticflight.activity.PageDomesticOrderEdit;
 import elong.android.domesticflight.activity.PageFlightFirstPage;
+import elong.android.domesticflight.activity.PageHome;
 import elong.android.domesticflight.activity.PageLogin;
 import elong.android.domesticflight.activity.PageOrderConfirm;
 import elong.android.domesticflight.activity.PageOrderPay;
@@ -19,6 +20,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class PageManager {
 	AndroidDriver driver;
+	
+	PageHome pageHome;
 	
 	PageAddCustomer pageAddCustomer;
 	
@@ -41,7 +44,8 @@ public class PageManager {
 	PageSelectCustomer pageSelectCustomer;
 	
 	AppiumFieldDecorator decorator;
-	
+
+
 	public PageManager(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
@@ -49,7 +53,16 @@ public class PageManager {
 	
 	}
 
-
+	public  PageHome getPageHome() {
+		if(pageHome == null){
+			pageHome = new PageHome(driver);
+		}
+		
+		PageFactory.initElements(decorator, pageHome);
+		
+		return pageHome;
+	}
+	
 	public  PageAddCustomer getPageAddCustomer() {
 		if(pageAddCustomer == null){
 			pageAddCustomer = new PageAddCustomer(driver);
@@ -96,8 +109,7 @@ public class PageManager {
 		if(pageLogin == null){
 			pageLogin = new PageLogin(driver);
 		}
-		
-		pageLogin.initViews();
+		PageFactory.initElements(decorator, pageLogin);
 		
 		return pageLogin;
 	}

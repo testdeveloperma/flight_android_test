@@ -31,15 +31,7 @@ public class BasicTestCase {
 		boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		
 		Assert.assertTrue(foundTabHomeActivity);
 		
-		//进入机票首页
-		//WebElement selectAir=driver.findElementByXPath("//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.view.View[1]");
-		//测试包
-		WebElement selectAir=driver.findElementByXPath("//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.widget.RelativeLayout[1]");
-		
-				//findElementByAccessibilityId("com.elong.android.home:id/home_module_flight");		
-		
-		
-		selectAir.click();	
+		pm.getPageHome().gotoFlight();
 		//firstpage=new PageFlightFirstPage(driver);
 		
 	}
