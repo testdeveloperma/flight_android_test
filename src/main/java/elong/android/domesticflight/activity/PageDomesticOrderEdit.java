@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.util.AndroidTool;
+import com.appium.base.AndroidTool;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;

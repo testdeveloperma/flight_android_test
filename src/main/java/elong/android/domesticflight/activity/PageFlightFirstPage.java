@@ -6,8 +6,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import com.appium.util.AndroidTool;
-import com.appium.util.PageManager;
+
+import com.appium.base.AndroidTool;
+import com.appium.base.PageManager;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;

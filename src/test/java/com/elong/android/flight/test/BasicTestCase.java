@@ -8,9 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import com.appium.util.AndroidTool;
-import com.appium.util.AppiumServer;
-import com.appium.util.PageManager;
+import com.appium.base.AndroidTool;
+import com.appium.base.AppiumServer;
+import com.appium.base.PageManager;
 
 import elong.android.domesticflight.activity.PageFlightFirstPage;
 import io.appium.java_client.android.AndroidDriver;

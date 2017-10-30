@@ -8,7 +8,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.util.AndroidTool;
+import com.appium.base.AndroidTool;
 
 public class PageSelectCustomer extends AndroidTool{
 	@AndroidFindBy(id="com.elong.android.flight:id/add_customer_button_flight")

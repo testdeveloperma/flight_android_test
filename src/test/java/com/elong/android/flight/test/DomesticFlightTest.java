@@ -10,9 +10,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.appium.util.AndroidTool;
-import com.appium.util.AppiumServer;
-import com.appium.util.ExcelData;
+import com.appium.base.AndroidTool;
+import com.appium.base.AppiumServer;
+import com.appium.base.ExcelData;
+
 import elong.android.domesticflight.bean.CabinDetailData;
 import elong.android.domesticflight.bean.FlightListData;
 import io.appium.java_client.android.AndroidKeyCode;
@@ -30,12 +31,6 @@ public class DomesticFlightTest extends BasicTestCase {
 		return e.getExcelData();
 	}
 
-	/**
-	 * 点击查询按钮，页面调整到航班列表页
-	 * 
-	 * @throws InterruptedException
-	 * @throws IOException
-	 */
 	@Test(dataProvider = "city",description="选择城市和日期搜索，进入航班列表")
 	public void test1(HashMap<String, String> data) throws InterruptedException, IOException {
 		System.out.println(data.toString());
@@ -73,7 +68,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	
 
 	
-	@Test
+	@Test(description="创建订单，去支付")
 	public void test4() {
 		pm.getPageDomesticOrderEdit().createOrder();
 

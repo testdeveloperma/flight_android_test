@@ -2,16 +2,18 @@ package elong.android.domesticflight.activity;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.util.AndroidTool;
-import com.appium.util.Parameters;
+import com.appium.base.AndroidTool;
+import com.appium.base.Parameters;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageLogin {
 	AndroidDriver driver;
 	
+	@iOSFindBy
 	@AndroidFindBy(id="com.dp.android.elong:id/login_phone")
 	MobileElement username;
 	@AndroidFindBy(id="com.dp.android.elong:id/login_password")

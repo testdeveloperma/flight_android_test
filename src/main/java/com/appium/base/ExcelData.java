@@ -1,4 +1,4 @@
-package com.appium.util;
+package com.appium.base;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.appium.util;
+package com.appium.base;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -51,7 +51,10 @@ public class AndroidTool {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 获取当前日期自动加20天
+	 * @return
+	 */
 	public static String getTimeXpath() {
 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
@@ -71,7 +74,11 @@ public class AndroidTool {
 		System.out.println(xpath);
 		return xpath;
 	}
-
+	/**
+	 * 精确控制搜索日期
+	 * @param date
+	 * @return
+	 */
 	public static String getTimeXpath(String date) {
 		String xpath = null;
 		Map<String, String> festivals = getFestivals();

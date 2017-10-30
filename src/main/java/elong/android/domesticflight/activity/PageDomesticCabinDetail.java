@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.util.AndroidTool;
+import com.appium.base.AndroidTool;
 
 import elong.android.domesticflight.bean.CabinDetailData;
 import io.appium.java_client.MobileElement;

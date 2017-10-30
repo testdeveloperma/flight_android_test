@@ -1,12 +1,7 @@
 package elong.android.domesticflight.activity;
 
 import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import com.appium.util.AndroidTool;
-import com.appium.util.PageManager;
+import com.appium.base.AndroidTool;
 
 import elong.android.domesticflight.bean.FlightListData;
 import io.appium.java_client.MobileElement;

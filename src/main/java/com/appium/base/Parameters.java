@@ -1,4 +1,4 @@
-package com.appium.util;
+package com.appium.base;
 
 import java.io.BufferedReader;
 import java.io.File;
