@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.thoughtworks.selenium.webdriven.commands.GetAllFields;
-
+import io.appium.java_client.AppiumDriver;
 //import android.app.Activity;
 //import android.app.Instrumentation.ActivityMonitor;
 //import android.content.IntentFilter;
@@ -20,9 +20,9 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class AndroidTool {
 
-	AndroidDriver driver;
+	AppiumDriver<WebElement> driver;
 
-	public AndroidTool(AndroidDriver driver) {
+	public AndroidTool(AppiumDriver<WebElement> driver) {
 		super();
 		this.driver = driver;
 	}
@@ -56,7 +56,6 @@ public class AndroidTool {
 	 * @return
 	 */
 	public static String getTimeXpath() {
-
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
 		Date date = new java.util.Date();
 		long ltime = date.getTime() + 20 * 24 * 60 * 60 * 1000;
@@ -65,18 +64,19 @@ public class AndroidTool {
 		Map<String, String> festivals = getFestivals();
 		if(festivals.containsKey(format)){
 			xpath = "//android.widget.TextView[@text=\"" + festivals.get(format) + "\"]";
+			System.out.println("单程xpath" + xpath);
 			return xpath;
 		}
 		String[] split = format.split("-");
 		Integer valueOf = Integer.valueOf(split[2]);
-		System.out.println(valueOf);
+		System.out.println("xpathid" + valueOf);
 		xpath = "//android.widget.TextView[@text=\"" + String.valueOf(valueOf) + "\"]";
 		System.out.println(xpath);
 		return xpath;
 	}
 	/**
-	 * 精确控制搜索日期
-	 * @param date
+	 * 精确控制搜索日期(正常只能选择 当月或下月的日期)
+	 * @param date 格式：2018-12-1
 	 * @return
 	 */
 	public static String getTimeXpath(String date) {
@@ -113,51 +113,19 @@ public class AndroidTool {
 		return festivals;
 	}
 	// 等待元素出现
-	public static void waitForEelementById(AndroidDriver driver, String id) {
+	public static void waitForEelementById(AndroidDriver<?> driver, String id) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
 	}
 
-	public static void waitForElementByText(AndroidDriver driver, String text) {
+	public static void waitForElementByText(AndroidDriver<?> driver, String text) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.name(text)));
 
 	}
 
-	public boolean waitForActivity(String activityName) {
-		if (driver.currentActivity().equalsIgnoreCase(activityName)) {
-			return true;
-		}
-		boolean foundActivity = false;
-		long currentTime = System.currentTimeMillis();
-		final long endTime = currentTime + 10000;
-		while (currentTime < endTime) {
-			if (driver.currentActivity().equalsIgnoreCase(activityName)) {
-				foundActivity = true;
-				break;
-			}
-			currentTime = System.currentTimeMillis();
-		}
-		return foundActivity;
-	}
-
-	public boolean waitForActivity(String activityName, int timeout) {
-		if (driver.currentActivity().equalsIgnoreCase(activityName)) {
-			return true;
-		}
-		boolean foundActivity = false;
-		long currentTime = System.currentTimeMillis();
-		final long endTime = currentTime + timeout;
-		while (currentTime < endTime) {
-			if (driver.currentActivity().equalsIgnoreCase(activityName)) {
-				foundActivity = true;
-				break;
-			}
-			currentTime = System.currentTimeMillis();
-		}
-		return foundActivity;
-	}
+	
 
 	// public boolean waitForActivity11(String name,int timeout){
 	// if(isActivityMatching(activityUtils.getCurrentActivity(false, false),

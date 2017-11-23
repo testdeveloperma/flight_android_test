@@ -19,7 +19,7 @@ import elong.android.domesticflight.bean.FlightListData;
 import io.appium.java_client.android.AndroidKeyCode;
 import jxl.read.biff.BiffException;
 
-public class DomesticFlightTest extends BasicTestCase {
+public class FlightTestIOS extends IOSBasicTestCase {
 
 	// PageDomesticFlightList flightlist;
 	CabinDetailData cabinDetailData;
@@ -31,15 +31,13 @@ public class DomesticFlightTest extends BasicTestCase {
 		return e.getExcelData();
 	}
 
-	@Test(dataProvider = "city",description="选择城市和日期搜索，进入航班列表")
-	public void test1(HashMap<String, String> data) throws InterruptedException, IOException {
-		pm.getPageFlightFirstPage().clearBoot();
-		System.out.println(data.toString());
-		String departCity = String.valueOf(data.get("departCity"));
-		String arriveCity = String.valueOf(data.get("arriveCity"));
-		pm.getPageFlightFirstPage().searchFlight(departCity, arriveCity);
-		flightListData = pm.getPageDomesticFlightList().getFlightListData();
+	@Test(description="选择城市和日期搜索，进入航班列表")
+	public void test1() throws InterruptedException, IOException {
 		
+		pm.getPageFlightFirstPage().searchFlight();
+	//	flightListData = pm.getPageDomesticFlightList().getFlightListData();
+		pm.getPageDomesticFlightList().iosselectFlight3();
+		pm.getPageDomesticCabinDetail().clickBookButton();
 	}
 	
 //	@Test(dataProvider = "city",description="选择城市和日期搜索，进入航班列表")
@@ -55,7 +53,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	@Test(description="选择航班列表的第三个航班")
 	public void test2() {
 
-		pm.getPageDomesticFlightList().selectFlight(2);
+		pm.getPageDomesticFlightList().iosselectFlight3();
 		cabinDetailData = pm.getPageDomesticCabinDetail().getCabinDetailData();
 		pm.getPageDomesticCabinDetail().getFlightTicketPrice();
 		
@@ -67,7 +65,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	public void test3() {
 		pm.getPageDomesticCabinDetail().clickBookButton();
 		// 登录
-		pm.getPageLogin().login();
+		//pm.getPageLogin().login();
 
 		// oe.addCustomer();
 		Assert.assertEquals(cabinDetailData.getDepartCity(), flightListData.getDepartCity());
@@ -82,6 +80,8 @@ public class DomesticFlightTest extends BasicTestCase {
 	@Test(description="创建订单，去支付")
 	public void test4() {
 		pm.getPageDomesticOrderEdit().createOrder();
+
+		// PageOrderConfirm orderConfirm = new PageOrderConfirm(driver);
 		pm.getPageOrderConfirm().gotoPay();
 
 	//	driver.sendKeyEvent(AndroidKeyCode.BACK);

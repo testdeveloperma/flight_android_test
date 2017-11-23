@@ -6,17 +6,18 @@ import org.openqa.selenium.WebElement;
 
 import com.appium.base.AndroidTool;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 public class PageAddCustomer {
-	AndroidDriver driver;
+	AppiumDriver driver;
 	WebElement chinese_name; // 中文姓名
 	WebElement select_id_type; // 证件类型
 	WebElement passport; // 护照
 	WebElement id_number; // 证件号码
 	WebElement ok; // 确认按钮
 
-	public PageAddCustomer(AndroidDriver driver) {
+	public PageAddCustomer(AppiumDriver driver) {
 		this.driver = driver;
 	}
 	//初始化视图

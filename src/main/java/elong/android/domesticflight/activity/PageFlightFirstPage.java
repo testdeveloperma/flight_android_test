@@ -4,21 +4,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.appium.base.AndroidTool;
 import com.appium.base.PageManager;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class PageFlightFirstPage extends AndroidTool{
-	AndroidDriver driver;
+public class PageFlightFirstPage{
+	AppiumDriver<WebElement> driver;
 	PageManager pm;
+	@AndroidFindBy(id="com.elong.android.flight:id/flightssearch_arrivedate_trigger")
+	MobileElement backDate;		//返程出发日期
+	@AndroidFindBy(id="com.elong.android.flight:id/rb_search_tab_round")
+	MobileElement roundTab;		//往返标签
+	@iOSFindBy(xpath="//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[3]/XCUIElementTypeButton")
 	@AndroidFindBy(id="com.elong.android.flight:id/flightsearch_submit")
-	MobileElement searchButton;		//查询按钮
+	MobileElement searchButton;		//搜索按钮
 	@AndroidFindBy(id="com.elong.android.flight:id/rb_search_tab_global")
 	MobileElement interFlightTab;	//国际标签
 	@AndroidFindBy(id="com.elong.android.flight:id/flightssearch_leavecity")
@@ -28,32 +33,39 @@ public class PageFlightFirstPage extends AndroidTool{
 	boolean foundActivity;
 	@AndroidFindBy(id="com.elong.android.flight:id/flightsearch_leave_date")
 	MobileElement departDate;		//出发日期标签
-	public PageFlightFirstPage(AndroidDriver driver) {
-		super(driver);
+	public PageFlightFirstPage(AppiumDriver driver) {	
 		this.driver = driver;
 		pm = new PageManager(driver);
 	}
-	
+	public void clearBoot(){
+		String pageSource = driver.getPageSource();
+		String id = "com.elong.android.flight:id/btn_close";
+		System.out.println(pageSource);
+		for (int i = 0; i < 5; i++) {
+			if(pageSource.contains(id)){
+				driver.findElementById(id).click();
+				break;
+			}else{
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				pageSource = driver.getPageSource();
+			}
+		}
+		
+	}
 	
 
 	public void selectDepartDate(){
 		departDate.click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String xpath = AndroidTool.getTimeXpath();
-		List<WebElement> today = driver.findElementsByXPath(xpath);
+		List<WebElement> flightDate = driver.findElementsByXPath(xpath);
 		
-		today.get(0).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		flightDate.get(0).click();
+
 		//WebElement date_list = driver.findElementById("com.elong.android.flight:id/date_list");
 		//List<WebElement> linearLayouts = date_list.findElements(By.);
 		//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/date_list\"]/android.widget.LinearLayout[1]
@@ -61,6 +73,17 @@ public class PageFlightFirstPage extends AndroidTool{
 		
 	}
 	
+	public void selectBackDate(){
+		backDate.click();
+		String xpath = AndroidTool.getTimeXpath();
+		List<WebElement> flightDate = driver.findElementsByXPath(xpath);
+		
+		flightDate.get(0).click();	
+	}
+	/**
+	 * 指定航班搜索日期
+	 * @param date  格式：2018-1-1 
+	 */
 	public void selectDepartDate(String date){
 		departDate.click();
 		try {
@@ -80,12 +103,12 @@ public class PageFlightFirstPage extends AndroidTool{
 		}else{
 			today.get(0).click();
 		}
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(4000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		//WebElement date_list = driver.findElementById("com.elong.android.flight:id/date_list");
 		//List<WebElement> linearLayouts = date_list.findElements(By.);
 		//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/date_list\"]/android.widget.LinearLayout[1]
@@ -117,17 +140,47 @@ public class PageFlightFirstPage extends AndroidTool{
 		//Assert.assertTrue(foundActivity);
 		searchButton.click();		
 	}
+	
+	
 	public void searchFlight(String departCity,String arriveCity){
 		selectDepartCity(departCity);
 		selectArriveCity(arriveCity);
 		selectDepartDate();
 		searchButton.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	}
+	/**
+	 * 搜索国内往返航班
+	 * @param departCity
+	 * @param arriveCity
+	 */
+	public void searchRoundFlight(String departCity,String arriveCity){
+		
+		selectDepartCity(departCity);
+		selectArriveCity(arriveCity);
+		selectDepartDate();
+		roundTab.click();
+		searchButton.click();
 
 	}
+	
+	public void searchInternationalFlight(String departCity,String arriveCity){
+		interFlightTab.click();
+		selectDepartCity(departCity);
+		selectArriveCity(arriveCity);
+		selectDepartDate();
+		searchButton.click();
+
+	}
+	
+	public void searchInternationalRoundFlight(String departCity,String arriveCity){
+		interFlightTab.click();
+		selectDepartCity(departCity);
+		selectArriveCity(arriveCity);
+		selectDepartDate();
+		selectBackDate();
+		searchButton.click();
+
+	}
+	
+	
 }

@@ -7,35 +7,35 @@ import org.openqa.selenium.WebElement;
 import com.appium.base.AndroidTool;
 
 import elong.android.domesticflight.bean.CabinDetailData;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageDomesticCabinDetail extends AndroidTool {
-	AndroidDriver driver;
-	
-	@AndroidFindBy(xpath="//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/lv_flights_info\"]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]")
+	AppiumDriver<WebElement> driver;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton[4]")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/lv_flights_info\"]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]")
 	WebElement bookButton; // 预定按钮
-	@AndroidFindBy(id="com.elong.android.flight:id/main_price")
+	@AndroidFindBy(id = "com.elong.android.flight:id/main_price")
 	List<MobileElement> price; // 票价控件
-	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_depart_city")
+	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_depart_city")
 	private MobileElement departCity; // 出发城市
-	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_arrive_city")
+	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_arrive_city")
 	private MobileElement arriveCity; // 到达城市'
-	@AndroidFindBy(id="com.elong.android.flight:id/common_head_title")
+	@AndroidFindBy(id = "com.elong.android.flight:id/common_head_title")
 	private MobileElement departDate; // 出发日期
-	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_time_start")
+	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_time_start")
 	private MobileElement departTime; // 出发日期
-	@AndroidFindBy(id="com.elong.android.flight:id/tv_flight_number_time_end")
+	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_time_end")
 	private MobileElement arriveTime; // 出发日期
 
-	public PageDomesticCabinDetail(AndroidDriver driver) {
+	public PageDomesticCabinDetail(AppiumDriver driver) {
 		super(driver);
 		this.driver = driver;
 
 	}
-
-	
 
 	public CabinDetailData getCabinDetailData() {
 		CabinDetailData cabinDetailData = new CabinDetailData();
@@ -69,7 +69,7 @@ public class PageDomesticCabinDetail extends AndroidTool {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
+
 	}
 
 }

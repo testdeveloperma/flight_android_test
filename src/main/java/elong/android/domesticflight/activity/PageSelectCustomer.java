@@ -2,8 +2,8 @@ package elong.android.domesticflight.activity;
 
 import java.io.IOException;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 import org.openqa.selenium.WebElement;
@@ -15,8 +15,8 @@ public class PageSelectCustomer extends AndroidTool{
 	private MobileElement addCustomer;
 	@AndroidFindBy(id="com.elong.android.flight:id/flight_add_customer_ok")
 	MobileElement ok_button;
-	AndroidDriver driver;
-	public PageSelectCustomer(AndroidDriver driver){
+	AppiumDriver<WebElement> driver;
+	public PageSelectCustomer(AppiumDriver driver){
 		super(driver);
 		this.driver=driver;
 		

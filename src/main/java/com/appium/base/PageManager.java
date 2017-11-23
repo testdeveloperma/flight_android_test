@@ -15,11 +15,14 @@ import elong.android.domesticflight.activity.PageOrderConfirm;
 import elong.android.domesticflight.activity.PageOrderPay;
 import elong.android.domesticflight.activity.PageSelectCity;
 import elong.android.domesticflight.activity.PageSelectCustomer;
-import io.appium.java_client.android.AndroidDriver;
+import elong.android.internationalflight.activity.PageInternationalFlightDetail;
+import elong.android.internationalflight.activity.PageInternationalFlightEdit;
+import elong.android.internationalflight.activity.PageInternationalFlightList;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class PageManager {
-	AndroidDriver driver;
+	AppiumDriver driver;
 	
 	PageHome pageHome;
 	
@@ -45,8 +48,14 @@ public class PageManager {
 	
 	AppiumFieldDecorator decorator;
 
+	PageInternationalFlightList pageInternationalFlightList;
 
-	public PageManager(AndroidDriver driver) {
+	PageInternationalFlightDetail pageInternationalFlightDetail;
+
+	PageInternationalFlightEdit pageInternationalFlightEdit;
+	
+	
+	public PageManager(AppiumDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		decorator = new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS);
@@ -164,11 +173,35 @@ public class PageManager {
 		return pageFlightFirstPage;
 	}
 
+	public PageInternationalFlightList getPageInternationalFlightList(){
+		if(pageInternationalFlightList == null){
+			pageInternationalFlightList = new PageInternationalFlightList();
+		}
+		
+		PageFactory.initElements(decorator, pageInternationalFlightList);		
+		return pageInternationalFlightList;
+	}
 
 
+	public PageInternationalFlightDetail getPageInternationalFlightDetail(){
+		
+		if(pageInternationalFlightDetail == null){
+			pageInternationalFlightDetail = new PageInternationalFlightDetail();
+		}
+		
+		PageFactory.initElements(decorator, pageInternationalFlightDetail);
+		return pageInternationalFlightDetail;
+	}
 
-
-
+	public PageInternationalFlightEdit getPageInternationalFlightEdit(){
+		
+		if(pageInternationalFlightEdit == null){
+			pageInternationalFlightEdit = new PageInternationalFlightEdit();
+		}
+		
+		PageFactory.initElements(decorator, pageInternationalFlightEdit);
+		return pageInternationalFlightEdit;
+	}
 	
 	
 	

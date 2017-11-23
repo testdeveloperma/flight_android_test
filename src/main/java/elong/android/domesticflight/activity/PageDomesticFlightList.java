@@ -4,17 +4,20 @@ import java.util.List;
 import com.appium.base.AndroidTool;
 
 import elong.android.domesticflight.bean.FlightListData;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageDomesticFlightList extends AndroidTool {
-	AndroidDriver driver;
+	AppiumDriver driver;
 
 	@AndroidFindBy(id="com.elong.android.flight:id/ll_pre_day")
 	private MobileElement lastDay; // 前一天按钮
 	@AndroidFindBy(id="com.elong.android.flight:id/ll_next_day")
 	private MobileElement nextDay; // 后一天按钮
+	@iOSFindBy(xpath="//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]")
 	@AndroidFindBy(id="com.elong.android.flight:id/flights_list_result")
 	private MobileElement flightList;
 	@AndroidFindBy(id="com.elong.android.flight:id/flight_list_item_wrapper")
@@ -26,7 +29,7 @@ public class PageDomesticFlightList extends AndroidTool {
 	@AndroidFindBy(id="com.elong.android.flight:id/tv_cur_day_info")
 	private MobileElement departDate; // 出发日期
 
-	public PageDomesticFlightList(AndroidDriver driver) {
+	public PageDomesticFlightList(AppiumDriver driver) {
 		super(driver);
 		this.driver = driver;
 	}
@@ -45,7 +48,10 @@ public class PageDomesticFlightList extends AndroidTool {
 		return flightListData;
 	}
 	
-
+	public void iosselectFlight3(){
+		flightList.click();
+	}
+	
 	/**
 	 * 选中航班列表中的第几个航班，下标从1开始
 	 * 

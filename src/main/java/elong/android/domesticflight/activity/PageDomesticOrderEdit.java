@@ -6,18 +6,21 @@ import org.openqa.selenium.WebElement;
 
 import com.appium.base.AndroidTool;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageDomesticOrderEdit extends AndroidTool {
-	AndroidDriver driver;
+	AppiumDriver<WebElement> driver;
+	
+	@iOSFindBy(xpath="//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage/XCUIElementTypeButton[2]")
 	@AndroidFindBy(id="com.elong.android.flight:id/next")
 	MobileElement next;
-	@AndroidFindBy(name="添加")
+	@AndroidFindBy(accessibility="")
 	MobileElement addCustomer;
 
-	public PageDomesticOrderEdit(AndroidDriver driver) {
+	public PageDomesticOrderEdit(AppiumDriver driver) {
 		super(driver);
 		this.driver = driver;
 		// TODO Auto-generated constructor stub

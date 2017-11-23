@@ -1,20 +1,18 @@
 package elong.android.domesticflight.activity;
 
-import org.openqa.selenium.WebElement;
-
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageSelectCity {
-	AndroidDriver driver;
+	AppiumDriver driver;
 	
 	@AndroidFindBy(id="com.elong.android.flight:id/city_select_search")
 	MobileElement city_select_search;
 	@AndroidFindBy(id="com.elong.android.flight:id/flight_search_bottomtab_domestic")
 	MobileElement domestic;
 	
-	public PageSelectCity(AndroidDriver driver){
+	public PageSelectCity(AppiumDriver driver){
 		this.driver = driver;
 	}
 		
