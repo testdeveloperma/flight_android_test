@@ -21,6 +21,9 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.5</version>
 					<configuration>
+						<systemPropertyVariables>
+							<appurl>${appurl}</appurl>
+						</systemPropertyVariables>
 						<suiteXmlFiles>
 							<suiteXmlFile>testng.xml</suiteXmlFile>
 						</suiteXmlFiles>
@@ -42,12 +45,12 @@
 			<version>6.9.10</version>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- <dependency> <groupId>io.appium</groupId> <artifactId>java-client</artifactId> 
 			<version>2.2.0</version> </dependency> -->
