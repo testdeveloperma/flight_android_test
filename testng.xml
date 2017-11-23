@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="First suite" verbose="1">
-	<parameter name="appurl"
-		value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9350_99.apk" />
+	<parameter name="appurl" value="${appurl}" />
 	<test name="DomesticFlightTest">
 		<classes>
 			<class name="com.elong.android.flight.test.DomesticFlightTest" />
