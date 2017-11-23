@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="First suite" verbose="1">
-	<parameter name="appurl"
-		value="${appurl}" />
+	<parameter name="appurl" value="${appurl}" />
 	<test name="DomesticFlightTest">
 		<classes>
 			<class name="com.elong.android.flight.test.DomesticFlightTest" />
