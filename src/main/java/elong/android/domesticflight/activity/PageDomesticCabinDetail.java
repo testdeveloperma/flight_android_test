@@ -16,8 +16,8 @@ public class PageDomesticCabinDetail extends AndroidTool {
 	AppiumDriver<WebElement> driver;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton[4]")
-	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/lv_flights_info\"]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]")
-	WebElement bookButton; // 预定按钮
+	@AndroidFindBy(id = "com.elong.android.flight:id/ll_cabin_item_book")
+	List<MobileElement> bookButtons; // 预定按钮
 	@AndroidFindBy(id = "com.elong.android.flight:id/main_price")
 	List<MobileElement> price; // 票价控件
 	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_depart_city")
@@ -62,7 +62,7 @@ public class PageDomesticCabinDetail extends AndroidTool {
 	 * @throws InterruptedException
 	 */
 	public void clickBookButton() {
-		bookButton.click();
+		bookButtons.get(1).click();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {

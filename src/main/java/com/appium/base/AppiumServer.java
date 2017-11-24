@@ -34,7 +34,9 @@ public class AppiumServer {
 		//"LE67A06200010087"
 		cap.setCapability("noReset", true);
 		cap.setCapability("platformVersion", "6.0");
-		cap.setCapability("app", appurl);
+		if(appurl != null || !appurl.equals("")){
+			cap.setCapability("app", appurl);
+		}
 		cap.setCapability("appPackage", "com.dp.android.elong");
 		//cap.setCapability("appActivity",
 		 //"com.elong.activity.others.TabHomeActivity");
