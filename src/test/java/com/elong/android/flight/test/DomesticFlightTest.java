@@ -88,8 +88,8 @@ public class DomesticFlightTest extends BasicTestCase {
 		pm.getPageOrderPay().gotoOrderDetail();
 		
 		try {
-			driver.wait(2000);
-		} catch (InterruptedException e) {
+			Thread.sleep(1000);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
