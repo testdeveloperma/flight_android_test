@@ -16,6 +16,10 @@ public class PageInternationalFlightList {
 	MobileElement backFlight;
 	public void selectFlight(){
 		flight1.click();
+	}
+	
+	public void selectRoundFlight(){
+		flight1.click();
 		backFlight.click();
 	}
 }

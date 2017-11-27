@@ -7,7 +7,9 @@ import javax.swing.event.SwingPropertyChangeSupport;
 
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import com.appium.base.AndroidTool;
@@ -19,11 +21,11 @@ import io.appium.java_client.TouchAction;
 
 public class BasicTestCase {
 
-	AppiumDriver driver;
+	static AppiumDriver<WebElement> driver;
 	AndroidTool appium;
 //	PageFlightFirstPage firstpage;
-	PageManager pm;
-	@BeforeClass()
+	static PageManager pm;
+	@BeforeSuite
 	@Parameters("appurl")
 	public void setUp(String appurl) throws MalformedURLException, InterruptedException{
 		driver=new AppiumServer().androidDriverRun(appurl);
@@ -55,9 +57,10 @@ public class BasicTestCase {
 		
 	}
 	
-	@AfterClass
+	@AfterSuite
 	public void tearDown(){
 		//driver.removeApp("com.dp.android.elong");
+		
 		driver.quit();
 	}
 }

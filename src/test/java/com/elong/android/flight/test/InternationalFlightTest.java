@@ -3,14 +3,32 @@ package com.elong.android.flight.test;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.appium.base.AndroidTool;
 import com.appium.base.ExcelData;
+import com.appium.base.PageManager;
 
+import io.appium.java_client.AppiumDriver;
 import jxl.read.biff.BiffException;
 
-public class InternationalFlightTest extends BasicTestCase{
+public class InternationalFlightTest{
+
+	private PageManager pm;
+	private AppiumDriver<WebElement> driver;
+	
+	
+	@BeforeClass
+	public void setUp(){
+		pm = BasicTestCase.pm;
+		driver = BasicTestCase.driver;
+		AndroidTool.executeAdbShell("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
+		pm.getPageHome().gotoFlight();
+	}
 
 	@DataProvider(name = "InterCity")
 	public Object[][] Numbers() throws IOException, BiffException {
@@ -49,6 +67,11 @@ public class InternationalFlightTest extends BasicTestCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@AfterClass
+	public void testClassOver(){
+		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
 	}
 	
 }

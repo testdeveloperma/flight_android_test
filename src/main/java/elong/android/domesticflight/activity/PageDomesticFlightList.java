@@ -1,17 +1,19 @@
 package elong.android.domesticflight.activity;
 
 import java.util.List;
+
+import org.openqa.selenium.WebElement;
+
 import com.appium.base.AndroidTool;
 
 import elong.android.domesticflight.bean.FlightListData;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageDomesticFlightList extends AndroidTool {
-	AppiumDriver driver;
+	AppiumDriver<WebElement> driver;
 
 	@AndroidFindBy(id="com.elong.android.flight:id/ll_pre_day")
 	private MobileElement lastDay; // 前一天按钮
@@ -53,21 +55,15 @@ public class PageDomesticFlightList extends AndroidTool {
 	}
 	
 	/**
-	 * 选中航班列表中的第几个航班，下标从1开始
+	 * 选中航班列表中的第几个航班，下标从0开始
 	 * 
 	 * @param index
 	 */
 	public void selectFlight(int index) {
 		flightLists.get(index).click();
-//		try {
-//			Thread.sleep(4000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		PageManager pm = new PageManager(driver);
-		
-		
+			
 	}
+	
+	
 
 }

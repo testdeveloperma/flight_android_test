@@ -51,6 +51,20 @@ public class AndroidTool {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void executeAdbShell(String cmd){
+		cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
+		Process p;
+		try {
+			p = Runtime.getRuntime().exec(cmd);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	/**
 	 * 获取当前日期自动加20天
 	 * @return
