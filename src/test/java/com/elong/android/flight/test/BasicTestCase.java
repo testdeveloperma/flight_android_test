@@ -37,7 +37,6 @@ public class BasicTestCase {
 	//	Assert.assertTrue(foundTabHomeActivity);
 		String pageSource = driver.getPageSource();
 		String photo = "com.dp.android.elong:id/app_start_photo_item";
-		//Thread.sleep(4000);
 		 for (int i = 0; i < 5; i++) {
 			if(pageSource.contains(photo)){
 				TouchAction touch = new TouchAction(driver);
@@ -46,7 +45,7 @@ public class BasicTestCase {
 
 				break;
 			}else{
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				System.out.println(i);
 				pageSource = driver.getPageSource();
 			}
@@ -59,7 +58,7 @@ public class BasicTestCase {
 	
 	@AfterSuite
 	public void tearDown(){
-		//driver.removeApp("com.dp.android.elong");
+		driver.removeApp("com.dp.android.elong");
 		
 		driver.quit();
 	}

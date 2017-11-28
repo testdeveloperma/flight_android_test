@@ -27,13 +27,13 @@ public class PageOrderConfirm {
 	
 	
 	public void gotoPay(){
-		gotoPay.click();
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			gotoPay.click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			AndroidTool.takeScreenShot(driver, "OrderConfirm");
+		}
 
 	}
 	

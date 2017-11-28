@@ -60,7 +60,13 @@ public class PageDomesticFlightList extends AndroidTool {
 	 * @param index
 	 */
 	public void selectFlight(int index) {
-		flightLists.get(index).click();
+		try {
+			flightLists.get(index).click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			AndroidTool.takeScreenShot(driver, "DomesticFlightList");
+		}
 			
 	}
 	

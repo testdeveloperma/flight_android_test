@@ -1,6 +1,8 @@
 package elong.android.domesticflight.activity;
 
 
+import com.appium.base.AndroidTool;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -23,7 +25,13 @@ public class PageOrderPay {
 		this.driver = driver;
 	}
 	public void gotoOrderDetail(){
-		lookOrder.click();
+		try {
+			lookOrder.click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			AndroidTool.takeScreenShot(driver, "lookOrder");
+		}
 	}
 	
 	public void goBack(){

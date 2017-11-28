@@ -54,7 +54,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	@Test(description="选择航班列表的第三个航班")
 	public void test2() {
 
-		pm.getPageDomesticFlightList().selectFlight(2);
+		pm.getPageDomesticFlightList().selectFlight(3);
 		cabinDetailData = pm.getPageDomesticCabinDetail().getCabinDetailData();
 		pm.getPageDomesticCabinDetail().getFlightTicketPrice();
 		

@@ -62,12 +62,13 @@ public class PageDomesticCabinDetail extends AndroidTool {
 	 * @throws InterruptedException
 	 */
 	public void clickBookButton() {
-		bookButtons.get(1).click();
+		
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
+			bookButtons.get(1).click();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			AndroidTool.takeScreenShot(driver, "DomesticCabinDetail");
 		}
 
 	}

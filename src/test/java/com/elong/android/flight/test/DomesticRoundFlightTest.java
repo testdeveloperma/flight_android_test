@@ -32,6 +32,12 @@ public class DomesticRoundFlightTest {
 	public void setUp(){
 		pm = BasicTestCase.pm;
 		driver = BasicTestCase.driver;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		AndroidTool.executeAdbShell("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
 		pm.getPageHome().gotoFlight();
 	}
@@ -74,7 +80,7 @@ public class DomesticRoundFlightTest {
 	@Test(description="选择返程航班列表的第三个航班")
 	public void test4() {
 
-		pm.getPageDomesticFlightList().selectFlight(2);
+		pm.getPageDomesticFlightList().selectFlight(0);
 		cabinDetailData = pm.getPageDomesticCabinDetail().getCabinDetailData();
 		pm.getPageDomesticCabinDetail().getFlightTicketPrice();		
 
@@ -97,13 +103,12 @@ public class DomesticRoundFlightTest {
 		pm.getPageOrderPay().goBack();
 		pm.getPageOrderPay().gotoOrderDetail();
 		
-		
-
 	}
 	
 	@AfterClass
 	public void testClassOver(){
 		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+
 	}
 
 }

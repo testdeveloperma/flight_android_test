@@ -1,12 +1,17 @@
 package com.appium.base;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,21 +25,66 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class AndroidTool {
 
-	AppiumDriver<WebElement> driver;
+	 AppiumDriver<WebElement> driver;
 
-	public AndroidTool(AppiumDriver<WebElement> driver) {
+	public AndroidTool(AppiumDriver<WebElement> d) {
 		super();
-		this.driver = driver;
+		this.driver = d;
 	}
 
+	public static void dynamicClick(AppiumDriver<WebElement> driver,String id,int c){
+		String pageSource = driver.getPageSource();
+		for (int i = 0; i < c; i++) {
+			if(pageSource.contains(id)){
+				driver.findElementById(id).click();
+				break;
+			}else{
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				pageSource = driver.getPageSource();
+			}
+		}
+	}
+	
+	
+	//截屏图片保存路径
+	static String path = "";
+	/*截屏
+	* tag表示一个模块标记字符
+	*/
+	public static void takeScreenShot(AppiumDriver<WebElement> driver,String tag){  
+		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
+		 path = classUrl.getPath();
+		 System.out.println("path:" + path);
+		File screenShotFile = 
+	             ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);  
+	   try {   
+	   FileUtils.copyFile(screenShotFile, new File(path + tag + 
+	                 getCurrentDateTime()+ ".jpg"));  
+//		      FileUtils.copyFile(screenShotFile, FileUtils.getFile(path), true);
+
+	   }catch (IOException e) {
+	   e.printStackTrace();
+	   }  
+	}
+	
+	//格式化当前时间
+	public static String getCurrentDateTime(){
+	   SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");//设置日期格式
+	   return df.format(new Date());
+	}
+	
 	/**
 	 * 安卓截屏方法，图片保存到项目的根目录下
 	 * 
 	 * @param picturename
 	 *            保存的图片名称
 	 */
-	public static void screencap(String picturename) {
-	
+	public static void screencap(String picturename) {	
 		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 		String agentPath = classUrl.getPath();
 
@@ -43,8 +93,7 @@ public class AndroidTool {
 	//	String adb = "/Users/user/android-sdk-macosx/platform-tools/adb";
 		try {
 			System.out.println(cmd);
-			Process p = Runtime.getRuntime().exec(cmd);
-			
+			Process p = Runtime.getRuntime().exec(cmd);			
 			int exitcode = p.waitFor();
 			System.out.println(exitcode);
 		} catch (Exception e) {
@@ -52,6 +101,10 @@ public class AndroidTool {
 		}
 	}
 	
+	/**
+	 * 执行adb 命令
+	 * @param cmd
+	 */
 	public static void executeAdbShell(String cmd){
 		cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
 		Process p;

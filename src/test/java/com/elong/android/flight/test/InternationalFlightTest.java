@@ -26,6 +26,12 @@ public class InternationalFlightTest{
 	public void setUp(){
 		pm = BasicTestCase.pm;
 		driver = BasicTestCase.driver;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		AndroidTool.executeAdbShell("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
 		pm.getPageHome().gotoFlight();
 	}
@@ -55,7 +61,7 @@ public class InternationalFlightTest{
 	@Test
 	public void test3(){
 		pm.getPageInternationalFlightDetail().selectCabin();
-		pm.getPageLogin().login();
+//		pm.getPageLogin().login();
 	}
 	
 	@Test

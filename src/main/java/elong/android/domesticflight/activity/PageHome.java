@@ -1,7 +1,10 @@
 package elong.android.domesticflight.activity;
 
 
+import org.apache.tools.ant.taskdefs.condition.And;
 import org.openqa.selenium.WebElement;
+
+import com.appium.base.AndroidTool;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -37,6 +40,14 @@ public class PageHome {
 	}
 
 	public void gotoFlight(){
-		flight_button.click();
+		try {
+			flight_button.click();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			AndroidTool.takeScreenShot(driver, "homepage");
+			
+		}
 	}
 }
