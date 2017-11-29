@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="android suite" verbose="1">
-	 <parameter name="appurl" value="${appurl}" /> 
-	<!--<parameter name="appurl" value="" />
-	 <parameter name="appurl" value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9350_101.apk" /> -->
+	<!-- <parameter name="appurl" value="${appurl}" /> 
+	<parameter name="appurl" value="" />  -->
+	 <parameter name="appurl" value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_108.apk" /> 
 	<!--  -->
 	<test name="flight uitest">
 		

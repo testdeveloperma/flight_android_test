@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -106,7 +107,11 @@ public class AndroidTool {
 	 * @param cmd
 	 */
 	public static void executeAdbShell(String cmd){
-		cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
+		Properties properties = System.getProperties();
+		String os = properties.getProperty("os.name");
+		if(os.contains("Mac")){
+			cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
+		}		
 		Process p;
 		try {
 			p = Runtime.getRuntime().exec(cmd);
