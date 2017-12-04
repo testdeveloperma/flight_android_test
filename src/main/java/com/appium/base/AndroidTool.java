@@ -171,7 +171,7 @@ public class AndroidTool {
 		Map<String, String> festivals = new HashMap<>();
 		festivals.put("2017-10-04", "中秋节");
 		festivals.put("2017-10-28", "重阳节");
-		festivals.put("2017-12-24", "平安节");
+		festivals.put("2017-12-24", "平安夜");
 		festivals.put("2017-12-25", "圣诞节");
 		festivals.put("2018-01-01", "元 旦");
 		festivals.put("2018-01-24", "腊 八");
