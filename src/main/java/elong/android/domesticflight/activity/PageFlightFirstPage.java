@@ -40,7 +40,6 @@ public class PageFlightFirstPage{
 	public void clearBoot(){
 		String pageSource = driver.getPageSource();
 		String id = "com.elong.android.flight:id/btn_close";
-		System.out.println(pageSource);
 		for (int i = 0; i < 5; i++) {
 			if(pageSource.contains(id)){
 				driver.findElementById(id).click();

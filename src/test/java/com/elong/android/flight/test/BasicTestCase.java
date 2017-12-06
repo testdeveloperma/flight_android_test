@@ -1,10 +1,7 @@
 package com.elong.android.flight.test;
 
+import java.io.BufferedReader;
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.event.SwingPropertyChangeSupport;
-
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
@@ -15,8 +12,9 @@ import org.testng.annotations.Parameters;
 import com.appium.base.AndroidTool;
 import com.appium.base.AppiumServer;
 import com.appium.base.PageManager;
+import com.appium.base.ReportEmail;
 
-import io.appium.java_client.AppiumDriver;import io.appium.java_client.MobileElement;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 
 public class BasicTestCase {
@@ -61,5 +59,17 @@ public class BasicTestCase {
 		driver.removeApp("com.dp.android.elong");
 		
 		driver.quit();
+		ReportEmail.sendTestNgEmail();
+	}
+	
+	
+	public void caseSetUp(){
+		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
+		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		if(adbShellResult == null){
+			AndroidTool.executeAdbShell("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
+			pm.getPageHome().gotoFlight();
+		}
+		
 	}
 }

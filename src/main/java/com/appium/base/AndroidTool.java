@@ -1,7 +1,9 @@
 package com.appium.base;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +25,7 @@ import io.appium.java_client.AppiumDriver;
 //import android.content.IntentFilter;
 //import android.os.SystemClock;
 import io.appium.java_client.android.AndroidDriver;
+import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
 
 public class AndroidTool {
 
@@ -32,6 +35,7 @@ public class AndroidTool {
 		super();
 		this.driver = d;
 	}
+	
 
 	public static void dynamicClick(AppiumDriver<WebElement> driver,String id,int c){
 		String pageSource = driver.getPageSource();
@@ -119,9 +123,34 @@ public class AndroidTool {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}		
+	}
+	
+	public static BufferedReader getAdbShellResult(String cmd){
+		Properties properties = System.getProperties();
+		String os = properties.getProperty("os.name");
+		if(os.contains("Mac")){
+			cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
+		}		
+		Process process;
+		try {
+			process = Runtime.getRuntime().exec(cmd);
+			process.waitFor();
+			//Runtime.getRuntime().exec("222");
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					process.getInputStream()));
+			return br;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
+		return null;
+	}
+	
+	
+	public static void main(String[] args) {
+		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
+		getAdbShellResult(cmd );
 	}
 	/**
 	 * 获取当前日期自动加20天

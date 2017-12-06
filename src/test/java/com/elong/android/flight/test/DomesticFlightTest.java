@@ -24,6 +24,11 @@ public class DomesticFlightTest extends BasicTestCase {
 	CabinDetailData cabinDetailData;
 	FlightListData flightListData;
 
+	@BeforeClass
+	public void setUp(){
+		caseSetUp();
+	}
+	
 	@DataProvider(name = "city")
 	public Object[][] Numbers() throws IOException, BiffException {
 		ExcelData e = new ExcelData("testdata", "city");
@@ -40,16 +45,6 @@ public class DomesticFlightTest extends BasicTestCase {
 		flightListData = pm.getPageDomesticFlightList().getFlightListData();
 		
 	}
-	
-//	@Test(dataProvider = "city",description="选择城市和日期搜索，进入航班列表")
-//	public void test(HashMap<String, String> data) throws InterruptedException, IOException {
-//		System.out.println(data.toString());
-//		String departCity = String.valueOf(data.get("departCity"));
-//		String arriveCity = String.valueOf(data.get("arriveCity"));
-//		pm.getPageFlightFirstPage().searchRoundFlight(departCity, arriveCity);
-//		flightListData = pm.getPageDomesticFlightList().getFlightListData();
-//		Thread.sleep(5000);
-//	}
 	
 	@Test(description="选择航班列表的第三个航班")
 	public void test2() {

@@ -35,7 +35,6 @@ public class PageHome {
 		String id = "com.elong.android.home:id/img_zhichong_close";
 		if(pageSource.contains(id)){
 			driver.findElementById(id).click();
-			System.out.println("iiiiiiiiiii");
 		}
 	}
 

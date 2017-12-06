@@ -18,28 +18,27 @@ import elong.android.domesticflight.bean.FlightListData;
 import io.appium.java_client.AppiumDriver;
 import jxl.read.biff.BiffException;
 
-public class DomesticRoundFlightTest {
+public class DomesticRoundFlightTest extends BasicTestCase{
 
 	CabinDetailData cabinDetailData;
 	FlightListData flightListData;
 
 	
-	private PageManager pm;
-	private AppiumDriver<WebElement> driver;
+//	private PageManager pm;
+//	private AppiumDriver<WebElement> driver;
 	
 	
 	@BeforeClass
 	public void setUp(){
-		pm = BasicTestCase.pm;
-		driver = BasicTestCase.driver;
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		AndroidTool.executeAdbShell("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
-		pm.getPageHome().gotoFlight();
+//		pm = BasicTestCase.pm;
+//		driver = BasicTestCase.driver;
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		caseSetUp();
 	}
 	
 	

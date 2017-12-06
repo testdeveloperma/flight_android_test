@@ -15,24 +15,23 @@ import com.appium.base.PageManager;
 import io.appium.java_client.AppiumDriver;
 import jxl.read.biff.BiffException;
 
-public class InternationalRoundFlightTest{
+public class InternationalRoundFlightTest extends BasicTestCase{
 
-	private PageManager pm;
-	private AppiumDriver<WebElement> driver;
+//	private PageManager pm;
+//	private AppiumDriver<WebElement> driver;
 	
 	
 	@BeforeClass
 	public void setUp(){
-		pm = BasicTestCase.pm;
-		driver = BasicTestCase.driver;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		AndroidTool.executeAdbShell("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
-		pm.getPageHome().gotoFlight();
+//		pm = BasicTestCase.pm;
+//		driver = BasicTestCase.driver;
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		super.caseSetUp();
 	}
 	
 	@DataProvider(name = "InterCity")
