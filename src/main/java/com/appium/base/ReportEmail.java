@@ -27,8 +27,8 @@ public class ReportEmail {
 			pathin = split[0] + "test-output/android suite/";
 			path = split[0] + "test-output/";
 		} else {
-			pathin = split[0] + "surefire-reports\\android suite\\";
-			path = split[0] + "surefire-reports\\";
+			pathin = split[0] + "target\\surefire-reports\\android suite\\";
+			path = split[0] + "target\\surefire-reports\\";
 		}
 		System.out.println("path:" + path);
 		String htmlContent = getFileContent(pathin + "flight uitest.html").toString();
