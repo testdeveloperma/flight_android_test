@@ -36,9 +36,12 @@ public class ReportEmail {
 		String replaceAll = htmlContent.replaceAll(
 				"<link href=\"../testng.css\" rel=\"stylesheet\" type=\"text/css\" />", contentFromCss.toString());
 		Document document = Jsoup.parse(replaceAll);
-		Elements fElements = document.getElementsByClass("invocation-failed");
-		if (fElements != null)
-			fElements.remove();
+//		Elements fElements = document.getElementsByClass("invocation-failed");
+//		if (fElements != null)
+//			fElements.remove();
+		Elements elementsByTag = document.getElementsByTag("pre");
+		if(elementsByTag != null)
+			elementsByTag.remove();
 		try {
 			EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), document.html());
 		} catch (Exception e) {

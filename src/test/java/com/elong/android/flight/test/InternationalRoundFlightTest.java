@@ -3,16 +3,12 @@ package com.elong.android.flight.test;
 import java.io.IOException;
 import java.util.HashMap;
 
-import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.appium.base.AndroidTool;
 import com.appium.base.ExcelData;
-import com.appium.base.PageManager;
-
-import io.appium.java_client.AppiumDriver;
 import jxl.read.biff.BiffException;
 
 public class InternationalRoundFlightTest extends BasicTestCase{
@@ -23,15 +19,7 @@ public class InternationalRoundFlightTest extends BasicTestCase{
 	
 	@BeforeClass
 	public void setUp(){
-//		pm = BasicTestCase.pm;
-//		driver = BasicTestCase.driver;
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		super.caseSetUp();
+		super.setUp();
 	}
 	
 	@DataProvider(name = "InterCity")
@@ -66,5 +54,11 @@ public class InternationalRoundFlightTest extends BasicTestCase{
 	public void test4(){
 		pm.getPageInternationalFlightEdit().submitOrder();
 	}
+	
+		@AfterClass
+		public void tearDown() {
+			// TODO Auto-generated method stub
+			super.tearDown();
+		}
 	
 }

@@ -30,15 +30,8 @@ public class DomesticRoundFlightTest extends BasicTestCase{
 	
 	@BeforeClass
 	public void setUp(){
-//		pm = BasicTestCase.pm;
-//		driver = BasicTestCase.driver;
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		caseSetUp();
+
+		super.setUp();
 	}
 	
 	
@@ -88,17 +81,12 @@ public class DomesticRoundFlightTest extends BasicTestCase{
 	@Test(description="选择返程舱位，点击预定进入填写页")
 	public void test5() {
 		pm.getPageDomesticCabinDetail().clickBookButton();
-		// 登录
-//		pm.getPageLogin().login();
-
-		// oe.addCustomer();
 	}
 	
 	@Test(description="创建订单，去支付")
 	public void test6() {
 		pm.getPageDomesticOrderEdit().createOrder();
 		pm.getPageOrderConfirm().gotoPay();
-	//	driver.sendKeyEvent(AndroidKeyCode.BACK);
 		pm.getPageOrderPay().goBack();
 		pm.getPageOrderPay().gotoOrderDetail();
 		
@@ -106,7 +94,7 @@ public class DomesticRoundFlightTest extends BasicTestCase{
 	
 	@AfterClass
 	public void testClassOver(){
-		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+		super.tearDown();
 
 	}
 

@@ -62,8 +62,12 @@ public class PageFlightFirstPage{
 		departDate.click();
 		String xpath = AndroidTool.getTimeXpath();
 		List<WebElement> flightDate = driver.findElementsByXPath(xpath);
+		if(flightDate.size() > 1){
+			flightDate.get(1).click();
+		}else{
+			flightDate.get(0).click();
+		}
 		
-		flightDate.get(0).click();
 
 		//WebElement date_list = driver.findElementById("com.elong.android.flight:id/date_list");
 		//List<WebElement> linearLayouts = date_list.findElements(By.);
@@ -76,8 +80,13 @@ public class PageFlightFirstPage{
 		backDate.click();
 		String xpath = AndroidTool.getTimeXpath();
 		List<WebElement> flightDate = driver.findElementsByXPath(xpath);
-		
-		flightDate.get(0).click();	
+			if(flightDate.size() > 1){
+				flightDate.get(1).click();
+			}else{
+				flightDate.get(0).click();
+			}
+				
+			
 	}
 	/**
 	 * 指定航班搜索日期

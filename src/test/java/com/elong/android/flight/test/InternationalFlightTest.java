@@ -24,15 +24,8 @@ public class InternationalFlightTest extends BasicTestCase{
 	
 	@BeforeClass
 	public void setUp(){
-//		pm = BasicTestCase.pm;
-//		driver = BasicTestCase.driver;
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		caseSetUp();
+
+		super.setUp();
 	}
 
 	@DataProvider(name = "InterCity")
@@ -78,7 +71,7 @@ public class InternationalFlightTest extends BasicTestCase{
 	
 	@AfterClass
 	public void testClassOver(){
-		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+		super.tearDown();
 	}
 	
 }
