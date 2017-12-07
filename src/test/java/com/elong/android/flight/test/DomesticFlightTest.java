@@ -51,27 +51,27 @@ public class DomesticFlightTest extends BasicTestCase {
 
 	}
 
-//	@Test(description = "选择自营第一个舱位，点击预定进入填写页")
-//	public void test3() {
-//		pm.getPageDomesticCabinDetail().clickBookButton();
-//	}
+	@Test(description = "选择自营第一个舱位，点击预定进入填写页")
+	public void test3() {
+		pm.getPageDomesticCabinDetail().clickBookButton();
+	}
 
-	// @Test(description="创建订单，去支付")
-	// public void test4() {
-	// pm.getPageDomesticOrderEdit().createOrder();
-	// pm.getPageOrderConfirm().gotoPay();
-	//
-	// pm.getPageOrderPay().goBack();
-	// pm.getPageOrderPay().gotoOrderDetail();
-	//
-	// try {
-	// Thread.sleep(1000);
-	// } catch (Exception e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// }
+	 @Test(description="创建订单，去支付")
+	 public void test4() {
+	 pm.getPageDomesticOrderEdit().createOrder();
+	 pm.getPageOrderConfirm().gotoPay();
+	
+	 pm.getPageOrderPay().goBack();
+	 pm.getPageOrderPay().gotoOrderDetail();
+	
+	 try {
+	 Thread.sleep(1000);
+	 } catch (Exception e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 }
+	
+	 }
 
 	@AfterClass
 	public void testClassOver() {
