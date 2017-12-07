@@ -59,7 +59,6 @@ public class BasicTestCase {
 		driver.removeApp("com.dp.android.elong");
 		
 		driver.quit();
-		ReportEmail.sendTestNgEmail();
 	}
 	
 	

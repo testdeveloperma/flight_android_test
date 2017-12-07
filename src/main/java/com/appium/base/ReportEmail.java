@@ -8,75 +8,81 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Properties;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 public class ReportEmail {
 
 	public static void main(String[] args) {
-		 URL classUrl =
-		 Thread.currentThread().getContextClassLoader().getResource("");
-		 String agentPath = classUrl.getPath();
-		 String[] split = agentPath.split("target");
-		 
-		 System.out.println(agentPath);
-		 String pathin = "";
-		 String path = "";
-		 Properties properties = System.getProperties();
-		 String property = properties.getProperty("os.name");
-		 if(property.contains("Mac")){
-			 pathin = split[0] + "test-output/android suite/";
-			 path = split[0] + "test-output/";
-		 }else {
-			 pathin = split[0] + "surefire-reports\\android suite\\";
-			 path = split[0] + "surefire-reports\\";
-		 }
+		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
+		String agentPath = classUrl.getPath();
+		String[] split = agentPath.split("target");
+		System.out.println(agentPath);
+		String pathin = "";
+		String path = "";
+		Properties properties = System.getProperties();
+		String property = properties.getProperty("os.name");
+		if (property.contains("Mac")) {
+			pathin = split[0] + "test-output/android suite/";
+			path = split[0] + "test-output/";
+		} else {
+			pathin = split[0] + "surefire-reports\\android suite\\";
+			path = split[0] + "surefire-reports\\";
+		}
 		System.out.println("path:" + path);
 		String htmlContent = getFileContent(pathin + "flight uitest.html").toString();
 		StringBuilder contentFromCss = getAddContentFromCss(path, "testng.css", "pre {white-space: normal;}");
-		String replaceAll = htmlContent.replaceAll("<link href=\"../testng.css\" rel=\"stylesheet\" type=\"text/css\" />", contentFromCss.toString());		
-		System.out.println(replaceAll);
-		try {			
-			EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), replaceAll);
+		String replaceAll = htmlContent.replaceAll(
+				"<link href=\"../testng.css\" rel=\"stylesheet\" type=\"text/css\" />", contentFromCss.toString());
+		Document document = Jsoup.parse(replaceAll);
+		Elements fElements = document.getElementsByClass("invocation-failed");
+		if (fElements != null)
+			fElements.remove();
+		try {
+			EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), document.html());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// sendTestNgEmail();
 
 	}
 
-	
-	public static void sendTestNgEmail(){
-		 URL classUrl =
-				 Thread.currentThread().getContextClassLoader().getResource("");
-				 String agentPath = classUrl.getPath();
-				 String[] split = agentPath.split("target");
-				 
-				 System.out.println(agentPath);
-				 String path = "";
-				 Properties properties = System.getProperties();
-				 String property = properties.getProperty("os.name");
-				 if(property.contains("Mac")){
-					 path = split[0] + "test-output/";
-				 }else {
-					 path = split[0] + "surefire-reports\\";
-				 }
-				System.out.println("path:" + path);
-				String htmlContent = getFileContent(path + "emailable-report.html").toString();
+	public static void sendTestNgEmail() {
+		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
+		String agentPath = classUrl.getPath();
+		String[] split = agentPath.split("target");
 
-				try {
-					String html = htmlContent.replaceAll("white-space: pre;", "");
-					EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), html);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		System.out.println(agentPath);
+		String path = "";
+		Properties properties = System.getProperties();
+		String property = properties.getProperty("os.name");
+		if (property.contains("Mac")) {
+			path = split[0] + "test-output/";
+		} else {
+			path = split[0] + "surefire-reports\\";
+		}
+		System.out.println("path:" + path);
+		String htmlContent = getFileContent(path + "emailable-report.html").toString();
+
+		try {
+			String html = htmlContent.replaceAll("white-space: pre;", "");
+			EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), html);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	private static StringBuilder getAddContentFromCss(String path, String fileName,String style) {
+
+	private static StringBuilder getAddContentFromCss(String path, String fileName, String style) {
 		StringBuilder cssContent = getFileContent(path + fileName);
 		cssContent.insert(0, "<style>" + style);
 		cssContent.append("</style>");
 
 		return cssContent;
 	}
+
 	private static StringBuilder getContentFromCss(String path, String fileName) {
 		StringBuilder cssContent = getFileContent(path + fileName);
 		cssContent.insert(0, "<style>");
