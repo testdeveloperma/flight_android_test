@@ -146,7 +146,7 @@ public class EmailUtil {
 	public static void sendEmail(String title, String content) {
 		// String title = "测试邮件";// 所发送邮件的标题
 		String from = "chengjun.ma@corp.elong.com";// 从那里发送
-		String sendTo[] = { "chengjun.ma@corp.elong.com" };// 发送到那里
+		String sendTo[] = { "chengjun.ma@corp.elong.com","Tech-Test-Air@corp.elong.com" };// 发送到那里
 		// 邮件的文本内容，可以包含html标记则显示为html页面
 		// String content = "test java send mail !!!!!!<br><a
 		// href=\"http://sjsky.javaeye.com/\">My blog</a>";
