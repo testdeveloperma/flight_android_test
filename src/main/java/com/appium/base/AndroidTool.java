@@ -153,13 +153,13 @@ public class AndroidTool {
 		getAdbShellResult(cmd );
 	}
 	/**
-	 * 获取当前日期自动加20天
+	 * 获取当前日期自动加25天
 	 * @return
 	 */
 	public static String getTimeXpath() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
 		Date date = new java.util.Date();
-		long ltime = date.getTime() + 20 * 24 * 60 * 60 * 1000;
+		long ltime = date.getTime() + 25 * 24 * 60 * 60 * 1000;
 		String format = df.format(new Date(ltime));
 		String xpath = null;
 		Map<String, String> festivals = getFestivals();
