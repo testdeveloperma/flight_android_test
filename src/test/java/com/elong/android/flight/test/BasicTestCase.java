@@ -80,7 +80,7 @@ public class BasicTestCase {
 	public void tearDown() {
 		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
 		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 
 			BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
 			try {
