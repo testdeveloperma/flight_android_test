@@ -130,11 +130,12 @@ public class AndroidTool {
 		String os = properties.getProperty("os.name");
 		if (os.contains("Mac")) {
 			cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
-		}else if (os.contains("Windows")) {
-			if(cmd.contains("grep")) {
-				 cmd = cmd.replaceAll("grep", "findstr");
-			}
 		}
+//		else if (os.contains("Windows")) {
+//			if(cmd.contains("grep")) {
+//				 cmd = cmd.replaceAll("grep", "findstr");
+//			}
+//		}
 		System.out.println(cmd);
 		BufferedReader br = null;
 		try {
