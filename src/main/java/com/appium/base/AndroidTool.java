@@ -135,7 +135,7 @@ public class AndroidTool {
 				 cmd = cmd.replaceAll("grep", "findstr");
 			}
 		}
-		
+		System.out.println(cmd);
 		BufferedReader br = null;
 		try {
 			Process process = Runtime.getRuntime().exec(cmd);
