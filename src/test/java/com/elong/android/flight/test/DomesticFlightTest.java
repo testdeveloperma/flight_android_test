@@ -1,10 +1,7 @@
 package com.elong.android.flight.test;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
-
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
