@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import com.appium.base.AndroidTool;
@@ -13,6 +15,7 @@ import com.appium.base.AppiumServer;
 import com.appium.base.PageManager;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 
 public class BasicTestCase {
@@ -21,7 +24,7 @@ public class BasicTestCase {
 	AndroidTool appium;
 //	PageFlightFirstPage firstpage;
 	static PageManager pm;
-	@BeforeSuite
+	@BeforeTest
 	@Parameters("appurl")
 	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
 		driver=new AppiumServer().androidDriverRun(appurl);
@@ -53,7 +56,7 @@ public class BasicTestCase {
 		
 	}
 	
-	@AfterSuite
+	@AfterTest
 	public void afterSuite(){
 		driver.removeApp("com.dp.android.elong");	
 		driver.quit();

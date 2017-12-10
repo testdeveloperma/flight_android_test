@@ -33,7 +33,9 @@ public class AppiumServer {
 		cap.setCapability("deviceName",deviceName);
 		//"LE67A06200010087"
 		cap.setCapability("noReset", true);
-		cap.setCapability("platformVersion", "6.0");
+		cap.setCapability("fullReset", false);
+		cap.setCapability("dontStopAppOnReset", true);
+		cap.setCapability("platformVersion", "7.0");
 		if(appurl != null || !appurl.equals("")){
 			cap.setCapability("app", appurl);
 		}
@@ -46,6 +48,23 @@ public class AppiumServer {
 		cap.setCapability("resetKeyboard", true);
 		AppiumDriver<WebElement> driver = new AppiumDriver<WebElement>(new URL(
 				"http://127.0.0.1:4723/wd/hub"), cap);
+		return driver;
+	}
+	
+	public  AppiumDriver<WebElement> androidDriverRun()
+			throws MalformedURLException, InterruptedException {
+		DesiredCapabilities cap = new DesiredCapabilities();
+		cap.setCapability("platformName", "Android");
+		cap.setCapability("deviceName",deviceName);
+		//"LE67A06200010087"
+		cap.setCapability("noReset", true);
+		cap.setCapability("fullReset", false);
+		cap.setCapability("dontStopAppOnReset", true);
+		cap.setCapability("platformVersion", "7.0");
+		cap.setCapability("unicodeKeyboard", true);
+		cap.setCapability("resetKeyboard", true);
+		AppiumDriver<WebElement> driver = new AppiumDriver<WebElement>(new URL(
+				"http://127.0.0.1:4725/wd/hub"), cap);
 		return driver;
 	}
 

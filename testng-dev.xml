@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="android suite" verbose="1">
+<suite name="android suite" verbose="1" thread-count="5">
 
 	<!--<parameter name="appurl" value="${appurl}" />
 	<parameter name="appurl" value="" />-->
@@ -9,12 +9,19 @@
 	<test name="flight uitest">
 
 		<classes>
-			<!-- -->
-
 			<class name="com.elong.android.flight.test.DomesticFlightTest" />
-			<class name="com.elong.android.flight.test.DomesticRoundFlightTest" />
-			<!-- <class name="com.elong.android.flight.test.InternationalFlightTest" />
+			<!-- <class name="com.elong.android.flight.test.DomesticRoundFlightTest" />
+			<class name="com.elong.android.flight.test.InternationalFlightTest" />
 			<class name="com.elong.android.flight.test.InternationalRoundFlightTest" /> -->
+
+		</classes>
+
+	</test>
+	
+	<test name="appium listener">
+		<classes>
+
+			<class name="com.appium.listener.AppiumListener" />
 
 		</classes>
 

@@ -27,9 +27,9 @@ public class PageDomesticCabinDetail extends AndroidTool {
 	@AndroidFindBy(id = "com.elong.android.flight:id/common_head_title")
 	private MobileElement departDate; // 出发日期
 	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_time_start")
-	private MobileElement departTime; // 出发日期
+	private MobileElement departTime; // 出发时间
 	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_time_end")
-	private MobileElement arriveTime; // 出发日期
+	private MobileElement arriveTime; // 到达时间
 
 	public PageDomesticCabinDetail(AppiumDriver driver) {
 		super(driver);

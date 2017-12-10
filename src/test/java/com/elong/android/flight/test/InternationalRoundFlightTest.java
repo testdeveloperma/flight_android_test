@@ -39,22 +39,26 @@ public class InternationalRoundFlightTest extends BasicTestCase{
 		
 	}
 	
-	@Test
+	@Test(description="选择往返航班")
 	public void test2(){
 		pm.getPageInternationalFlightList().selectRoundFlight();
 	}
 	
-	@Test
+	@Test(description="选择一个舱位，点击预定进入填写页")
 	public void test3(){
 		pm.getPageInternationalFlightDetail().selectCabin();
 //		pm.getPageLogin().login();
 	}
 	
-	@Test
+	@Test(description="点击提交订单，创建订单")
 	public void test4(){
 		pm.getPageInternationalFlightEdit().submitOrder();
 	}
-	
+	@Test(description="点击返回按钮，弹出查看订单详情，点击查看订单")
+	public void test5(){
+		pm.getPageOrderPay().goBack();
+		pm.getPageOrderPay().gotoOrderDetail();
+	}
 		@AfterClass
 		public void tearDown() {
 			// TODO Auto-generated method stub

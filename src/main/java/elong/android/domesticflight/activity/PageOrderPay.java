@@ -1,6 +1,8 @@
 package elong.android.domesticflight.activity;
 
 
+import org.openqa.selenium.WebElement;
+
 import com.appium.base.AndroidTool;
 
 import io.appium.java_client.AppiumDriver;
@@ -10,7 +12,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageOrderPay {
 
-	AppiumDriver driver;
+	AppiumDriver<WebElement> driver;
 	@AndroidFindBy(id="com.dp.android.elong:id/payment_head_title")
 	MobileElement headTitle;
 	@iOSFindBy(accessibility="basevc navback normal")
@@ -21,7 +23,7 @@ public class PageOrderPay {
 	@iOSFindBy(accessibility="查看订单")
 	@AndroidFindBy(id="com.dp.android.elong:id/dialog_positive_button")
 	public MobileElement lookOrder; //查看订单
-	public PageOrderPay(AppiumDriver driver){
+	public PageOrderPay(AppiumDriver<WebElement> driver){
 		this.driver = driver;
 	}
 	public void gotoOrderDetail(){
@@ -35,8 +37,14 @@ public class PageOrderPay {
 	}
 	
 	public void goBack(){
-		headTitle.getText();
-		back.click();
+		try {
+			headTitle.getText();
+			back.click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			AndroidTool.takeScreenShot(driver, "orderPay");
+		}
 	}
 	
 }

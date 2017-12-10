@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Properties;
 
 public class Parameters {
@@ -59,11 +58,9 @@ public class Parameters {
 		String[] deviceName = null;
 		Runtime run = Runtime.getRuntime();
 		try {
-			Process process = run.exec("/Users/user/android-sdk-macosx/platform-tools/adb devices");
-			process.waitFor();
-			// Runtime.getRuntime().exec("222");
-			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			System.out.println("adb devices:" + br.readLine().toString());
+			String cmd = "adb devices";
+			BufferedReader br = AndroidTool.getAdbShellResult(cmd);
+			
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				System.out.println(line.toString());
@@ -72,7 +69,7 @@ public class Parameters {
 				}
 			}
 			br.close();
-			process.waitFor();
+			//process.waitFor();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

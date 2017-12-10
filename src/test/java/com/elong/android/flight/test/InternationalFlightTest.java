@@ -45,18 +45,18 @@ public class InternationalFlightTest extends BasicTestCase{
 		
 	}
 	
-	@Test
+	@Test(description="选择一个舱位，点击预定进入国际填写页")
 	public void test2(){
 		pm.getPageInternationalFlightList().selectFlight();
 	}
 	
-	@Test
+	@Test(description="")
 	public void test3(){
 		pm.getPageInternationalFlightDetail().selectCabin();
 //		pm.getPageLogin().login();
 	}
 	
-	@Test
+	@Test(description="创建订单，进入支付页")
 	public void test4(){
 		pm.getPageInternationalFlightEdit().submitOrder();
 //		try {
@@ -65,6 +65,10 @@ public class InternationalFlightTest extends BasicTestCase{
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+	}
+	
+	@Test(description="点击返回按钮，弹出查看订单详情，点击查看订单")
+	public void test5(){
 		pm.getPageOrderPay().goBack();
 		pm.getPageOrderPay().gotoOrderDetail();
 	}

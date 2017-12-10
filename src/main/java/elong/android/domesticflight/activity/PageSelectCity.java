@@ -1,5 +1,9 @@
 package elong.android.domesticflight.activity;
 
+import java.io.IOException;
+
+import com.appium.base.AndroidTool;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -17,9 +21,18 @@ public class PageSelectCity {
 	}
 		
 	public void selectCity(String city){
-		//adb shell am broadcast -a ADB_INPUT_TEXT --es msg '广州'		
-		//Runtime.getRuntime().exec("adb shell am broadcast -a ADB_INPUT_TEXT --es msg '广州'");				
+		//adb shell am broadcast -a ADB_INPUT_TEXT --es msg '广州'	
+//		String cmd = "adb shell am broadcast -a ADB_INPUT_TEXT --es msg '广州'";
+//		try {
+//			AndroidTool.executeAdbShell(cmd);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		long start = System.currentTimeMillis();
 		city_select_search.sendKeys(city);
+		long end = System.currentTimeMillis();
+		System.out.println("time: " + (end - start));
 		domestic.click();
 	}
 }
