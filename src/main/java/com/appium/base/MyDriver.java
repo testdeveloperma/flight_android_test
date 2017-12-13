@@ -8,13 +8,34 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
-public class AppiumServer {
+public class MyDriver{
 	String deviceName;
+
+	AppiumDriver<WebElement> driver;
+	public String getDeviceName() {
+		return deviceName;
+	}
+
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
+	}
+
+	public AppiumDriver<WebElement> getDriver() {
+		return driver;
+	}
+
+	public void setDriver(AppiumDriver<WebElement> driver) {
+		this.driver = driver;
+	}
+
+
+
+
+
+//	DesiredCapabilities cap = new DesiredCapabilities();
 	
-	
-	
-	public AppiumServer() {
-		super();
+	public MyDriver() {
+		
 		Parameters pa=new Parameters();
 		try {
 			this.deviceName =pa.getDeviceName();
@@ -23,34 +44,12 @@ public class AppiumServer {
 			e.printStackTrace();
 		}
 	}
-
-
-
-	public  AppiumDriver<WebElement> androidDriverRun(String appurl)
-			throws MalformedURLException, InterruptedException {
-		DesiredCapabilities cap = new DesiredCapabilities();
-		cap.setCapability("platformName", "Android");
-		cap.setCapability("deviceName",deviceName);
-		//"LE67A06200010087"
-		cap.setCapability("noReset", true);
-		cap.setCapability("fullReset", false);
-		cap.setCapability("dontStopAppOnReset", true);
-		cap.setCapability("platformVersion", "7.0");
-		if(appurl != null || !appurl.equals("")){
-			cap.setCapability("app", appurl);
-		}
-		cap.setCapability("appPackage", "com.dp.android.elong");
-		//cap.setCapability("appActivity",
-		 //"com.elong.activity.others.TabHomeActivity");
-		cap.setCapability("appActivity",
-				"com.elong.activity.others.AppGuidActivity");
-		cap.setCapability("unicodeKeyboard", true);
-		cap.setCapability("resetKeyboard", true);
-		AppiumDriver<WebElement> driver = new AppiumDriver<WebElement>(new URL(
-				"http://127.0.0.1:4723/wd/hub"), cap);
-		return driver;
-	}
 	
+	
+
+	
+
+
 	public  AppiumDriver<WebElement> androidDriverRun()
 			throws MalformedURLException, InterruptedException {
 		DesiredCapabilities cap = new DesiredCapabilities();
@@ -61,9 +60,39 @@ public class AppiumServer {
 		cap.setCapability("fullReset", false);
 		cap.setCapability("dontStopAppOnReset", true);
 		cap.setCapability("platformVersion", "7.0");
+		/*if(appurl != null || !appurl.equals("")){
+			cap.setCapability("app", appurl);
+		}*/
+		cap.setCapability("appPackage", "com.dp.android.elong");
+		//cap.setCapability("appActivity",
+		 //"com.elong.activity.others.TabHomeActivity");
+		cap.setCapability("appActivity",
+				"com.elong.activity.others.AppGuidActivity");
 		cap.setCapability("unicodeKeyboard", true);
 		cap.setCapability("resetKeyboard", true);
-		AppiumDriver<WebElement> driver = new AppiumDriver<WebElement>(new URL(
+		this.driver = new AppiumDriver<WebElement>(new URL(
+				"http://127.0.0.1:4723/wd/hub"), cap);
+		return driver;
+	}
+	
+	public  AppiumDriver<WebElement> androidDriverRun2()
+			throws MalformedURLException, InterruptedException {
+		DesiredCapabilities cap = new DesiredCapabilities();
+		cap.setCapability("platformName", "Android");
+		cap.setCapability("deviceName",deviceName);
+	//	com.huawei.systemmanager/.mainscreen.MainScreenActivity: +259ms
+		cap.setCapability("appPackage", "com.huawei.systemmanager");
+		cap.setCapability("appActivity",
+				"mainscreen.MainScreenActivity");
+		//"LE67A06200010087"
+		cap.setCapability("noReset", true);
+		cap.setCapability("fullReset", false);
+		cap.setCapability("dontStopAppOnReset", true);
+		cap.setCapability("platformVersion", "7.0");
+		cap.setCapability("unicodeKeyboard", true);
+		cap.setCapability("resetKeyboard", true);
+		System.out.println("我是4725");
+		this.driver = new AppiumDriver<WebElement>(new URL(
 				"http://127.0.0.1:4725/wd/hub"), cap);
 		return driver;
 	}

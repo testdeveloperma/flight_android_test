@@ -1,18 +1,63 @@
 package com.elong.android.flight.test;
 
-import java.net.URL;
-import java.util.Iterator;
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.WebElement;
+
+import com.appium.base.AndroidTool;
+import com.appium.base.MyDriver;
+import com.appium.base.PageManager;
+import com.appium.listener.DialogCheck;
+import com.appium.listener.InstallThread;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 
 public class Main {
+	static AppiumDriver<WebElement> driver;
+	AndroidTool appium;
+	// PageFlightFirstPage firstpage;
+	static PageManager pm;
+	public static String appurl = "http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_108.apk";
 
-	public static void main(String[] args) {
-		 URL classUrl =
-				 Thread.currentThread().getContextClassLoader().getResource("");
-				 String agentPath = classUrl.getPath();
-				 String[] split = agentPath.split("target");
-				 for (String string : split) {
-					System.out.println(string);
+	public static void main(String[] args) throws MalformedURLException, InterruptedException {
+					
+			driver = new MyDriver().androidDriverRun();
+			driver.removeApp("com.dp.android.elong");
+			InstallThread installThread = new InstallThread();
+			installThread.setAppurl(appurl);
+			installThread.setDriver(driver);
+			
+			DialogCheck dialogCheck = new DialogCheck(driver);
+			installThread.start();
+			dialogCheck.start();
+						
+			//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			pm = new PageManager(driver);
+			//appium=new AndroidTool(driver);
+			
+		//	boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		
+		//	Assert.assertTrue(foundTabHomeActivity);
+			String pageSource = driver.getPageSource();
+			String continueee = "com.dp.android.elong:id/continueee";
+			 for (int i = 0; i < 5; i++) {
+				if(pageSource.contains(continueee)){
+					
+					driver.findElementById("com.dp.android.elong:id/continueee").click();
+
+					break;
+				}else{
+					TouchAction touch = new TouchAction(driver);
+					touch.press(1100,1000).moveTo(-500, 0).release().perform();
+					Thread.sleep(500);
+					System.out.println(i);
+					pageSource = driver.getPageSource();
 				}
-				 System.out.println(agentPath);
+			}
+			pm.getPageHome().clearDialog();
+			pm.getPageHome().gotoFlight();
+			//firstpage=new PageFlightFirstPage(driver);
+			
+		}
 	}
-}
+

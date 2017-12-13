@@ -11,8 +11,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import com.appium.base.AndroidTool;
-import com.appium.base.AppiumServer;
+import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
+import com.appium.listener.AppiumListener;
+import com.appium.listener.DialogCheck;
+import com.appium.listener.InstallThread;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -27,7 +30,18 @@ public class BasicTestCase {
 	@BeforeTest
 	@Parameters("appurl")
 	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
-		driver=new AppiumServer().androidDriverRun(appurl);
+		
+		driver = new MyDriver().androidDriverRun();
+		driver.removeApp("com.dp.android.elong");
+		InstallThread installThread = new InstallThread();
+		installThread.setAppurl(appurl);
+		installThread.setDriver(driver);
+		
+		DialogCheck dialogCheck = new DialogCheck(driver);
+		installThread.start();
+		dialogCheck.start();
+		
+		
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		pm = new PageManager(driver);
 		//appium=new AndroidTool(driver);
@@ -58,8 +72,10 @@ public class BasicTestCase {
 	
 	@AfterTest
 	public void afterSuite(){
-		driver.removeApp("com.dp.android.elong");	
+		System.out.println("4723正在关闭。。。");
+//		driver.removeApp("com.dp.android.elong");	
 		driver.quit();
+		AppiumListener.isListen = false;
 	}
 	
 	
@@ -106,5 +122,14 @@ public class BasicTestCase {
 		}
 	}
 	
+	
+	public static void main(String[] args){
+
+		InstallThread installThread = new InstallThread();
+		DialogCheck dialogCheck = new DialogCheck(driver);
+		installThread.start();
+		dialogCheck.start();
+	
+	}
 
 }

@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.appium.base.AndroidTool;
-import com.appium.base.AppiumServer;
+import com.appium.base.MyDriver;
 import com.appium.base.ExcelData;
 
 import elong.android.domesticflight.bean.CabinDetailData;

@@ -9,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import com.appium.base.AndroidTool;
-import com.appium.base.AppiumServer;
+import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
 
 import elong.android.domesticflight.activity.PageFlightFirstPage;
@@ -24,7 +24,7 @@ public class IOSBasicTestCase {
 	PageManager pm;
 	@BeforeClass
 	public void setUp() throws MalformedURLException, InterruptedException{
-		driver=new AppiumServer().iosDriverRun();
+		driver=new MyDriver().iosDriverRun();
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		pm = new PageManager(driver);
 		appium=new AndroidTool(driver);
