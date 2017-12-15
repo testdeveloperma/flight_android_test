@@ -18,7 +18,7 @@ public class Main {
 	AndroidTool appium;
 	// PageFlightFirstPage firstpage;
 	static PageManager pm;
-	public static String appurl = "http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_108.apk";
+	public static String appurl = "/Users/user/Downloads/Elong_Trunk_9360_110.apk";
 
 	public static void main(String[] args) throws MalformedURLException, InterruptedException {
 					
