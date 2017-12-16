@@ -13,6 +13,7 @@ import org.testng.annotations.Parameters;
 import com.appium.base.AndroidTool;
 import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
+import com.appium.base.UpdateApp;
 import com.appium.listener.AppiumListener;
 import com.appium.listener.DialogCheck;
 import com.appium.listener.InstallThread;
@@ -30,16 +31,25 @@ public class BasicTestCase {
 	@BeforeTest
 	@Parameters("appurl")
 	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
+		String packageName = "com.dp.android.elong";
+		if(appurl != null && !appurl.equals("")) {
+			UpdateApp updateApp = new UpdateApp();
+			updateApp.install(packageName, appurl);
+		}
+		String uicmd = "adb shell am instrument -w -r   -e debug false -e class com.chengjunma.apk_install.InstrumentedTest com.chengjunma.apk_install.test/android.support.test.runner.AndroidJUnitRunner";
+		AndroidTool.executeAdbShell(uicmd);
+		waitinstall();
+		
 		
 		driver = new MyDriver().androidDriverRun();
-		driver.removeApp("com.dp.android.elong");
-		InstallThread installThread = new InstallThread();
-		installThread.setAppurl(appurl);
-		installThread.setDriver(driver);
-		
-		DialogCheck dialogCheck = new DialogCheck(driver);
-		installThread.start();
-		dialogCheck.start();
+		//driver.removeApp("com.dp.android.elong");
+//		InstallThread installThread = new InstallThread();
+//		installThread.setAppurl(appurl);
+//		installThread.setDriver(driver);
+//		
+//		DialogCheck dialogCheck = new DialogCheck(driver);
+//		installThread.start();
+//		dialogCheck.start();
 		
 		
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -125,11 +135,33 @@ public class BasicTestCase {
 	
 	public static void main(String[] args){
 
-		InstallThread installThread = new InstallThread();
-		DialogCheck dialogCheck = new DialogCheck(driver);
-		installThread.start();
-		dialogCheck.start();
+		
+		
+		waitinstall();
 	
+	}
+
+	public static void waitinstall() {
+		for(int i = 0;i< 30; i++){
+			System.out.println(i);
+			String cmd = "adb shell pm list package|grep \"com.dp.android.elong\"";
+			BufferedReader bufferedReader = AndroidTool.getAdbShellResult(cmd);
+			
+			try {
+				String line = bufferedReader.readLine();
+				if(line != null)
+					break;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

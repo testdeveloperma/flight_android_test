@@ -5,7 +5,7 @@
 	<!--<parameter name="appurl" value="${appurl}" /> <parameter name="appurl" 
 		value="" /> -->
 	<parameter name="appurl"
-		value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_108.apk" />
+		value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_117.apk" />
 <!-- 	<test name="appium listener">
 		<classes>
 			<class name="com.appium.listener.AppiumListener" />

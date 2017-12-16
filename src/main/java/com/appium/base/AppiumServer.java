@@ -60,7 +60,7 @@ public class AppiumServer {
 		cap.setCapability("noReset", true);
 		cap.setCapability("fullReset", false);
 		cap.setCapability("dontStopAppOnReset", true);
-		cap.setCapability("platformVersion", "7.0");
+		cap.setCapability("platformVersion", "7.1");
 		cap.setCapability("unicodeKeyboard", true);
 		cap.setCapability("resetKeyboard", true);
 		AppiumDriver<WebElement> driver = new AppiumDriver<WebElement>(new URL(

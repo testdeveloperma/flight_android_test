@@ -59,7 +59,7 @@ public class MyDriver{
 		cap.setCapability("noReset", true);
 		cap.setCapability("fullReset", false);
 		cap.setCapability("dontStopAppOnReset", true);
-		cap.setCapability("platformVersion", "7.0");
+		cap.setCapability("platformVersion", "7.1");
 		/*if(appurl != null || !appurl.equals("")){
 			cap.setCapability("app", appurl);
 		}*/
