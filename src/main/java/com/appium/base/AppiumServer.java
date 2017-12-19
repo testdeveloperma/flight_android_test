@@ -35,7 +35,7 @@ public class AppiumServer {
 		cap.setCapability("noReset", true);
 		cap.setCapability("fullReset", false);
 		cap.setCapability("dontStopAppOnReset", true);
-		cap.setCapability("platformVersion", "7.0");
+		cap.setCapability("platformVersion", Parameters.getPlatformVersion());
 		if(appurl != null && !appurl.equals("")){
 			cap.setCapability("app", appurl);
 		}

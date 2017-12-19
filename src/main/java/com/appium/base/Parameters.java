@@ -33,6 +33,22 @@ public class Parameters {
 		username = pro.getProperty("username");
 		password = pro.getProperty("password");
 	}
+	public static String getPlatformVersion(){
+		String cmd = "adb shell getprop ro.build.version.release";
+		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		String version = null;
+		try {
+			version = adbShellResult.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return version;
+	}
+	public static void main(String[] args) {
+		System.out.println(getPlatformVersion());
+	}
 
 	/**
 	 * 获取测试机的设备号

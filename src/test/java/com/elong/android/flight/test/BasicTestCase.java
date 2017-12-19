@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import com.appium.base.AndroidTool;
+import com.appium.base.AppiumServer;
 import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
 import com.appium.base.UpdateApp;
@@ -26,13 +27,12 @@ public class BasicTestCase {
 
 	static AppiumDriver<WebElement> driver;
 	AndroidTool appium;
-//	PageFlightFirstPage firstpage;
 	static PageManager pm;
 	@BeforeTest
 	@Parameters("appurl")
 	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
 				
-		driver = new MyDriver().androidDriverRun();
+		driver = new AppiumServer().androidDriverRun(appurl);
 		
 		pm = new PageManager(driver);
 		
@@ -54,9 +54,7 @@ public class BasicTestCase {
 		}
 		 
 		pm.getPageHome().clearDialog();
-		pm.getPageHome().gotoFlight();
-		//firstpage=new PageFlightFirstPage(driver);
-		
+		pm.getPageHome().gotoFlight();		
 	}
 	
 	@AfterTest

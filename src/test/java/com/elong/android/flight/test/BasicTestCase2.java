@@ -31,6 +31,12 @@ public class BasicTestCase2 {
 	@BeforeTest
 	@Parameters("appurl")
 	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
+		String force = "adb shell am force-stop io.appium.unlock";
+		AndroidTool.executeAdbShell(force);
+		
+		String start = "adb shell am start -W -n io.appium.unlock/.Unlock -a android.intent.action.Main -c android.intent.category.LAUNCHER -f 0x10200000";
+		AndroidTool.executeAdbShell(start);
+		
 		String packageName = "com.dp.android.elong";
 		if(appurl != null && !appurl.equals("")) {
 			UpdateApp updateApp = new UpdateApp();
