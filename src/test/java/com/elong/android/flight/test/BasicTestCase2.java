@@ -22,7 +22,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 
-public class BasicTestCase {
+public class BasicTestCase2 {
 
 	static AppiumDriver<WebElement> driver;
 	AndroidTool appium;
@@ -31,11 +31,33 @@ public class BasicTestCase {
 	@BeforeTest
 	@Parameters("appurl")
 	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
-				
+		String packageName = "com.dp.android.elong";
+		if(appurl != null && !appurl.equals("")) {
+			UpdateApp updateApp = new UpdateApp();
+			updateApp.install(packageName, appurl);
+		}
+		String uicmd = "adb shell am instrument -w -r   -e debug false -e class com.chengjunma.apk_install.InstrumentedTest com.chengjunma.apk_install.test/android.support.test.runner.AndroidJUnitRunner";
+		AndroidTool.executeAdbShell(uicmd);
+		waitinstall();
+		
+		
 		driver = new MyDriver().androidDriverRun();
+		//driver.removeApp("com.dp.android.elong");
+//		InstallThread installThread = new InstallThread();
+//		installThread.setAppurl(appurl);
+//		installThread.setDriver(driver);
+//		
+//		DialogCheck dialogCheck = new DialogCheck(driver);
+//		installThread.start();
+//		dialogCheck.start();
 		
+		
+		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		pm = new PageManager(driver);
+		//appium=new AndroidTool(driver);
 		
+	//	boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		
+	//	Assert.assertTrue(foundTabHomeActivity);
 		String pageSource = driver.getPageSource();
 		String continueee = "com.dp.android.elong:id/continueee";
 		 for (int i = 0; i < 5; i++) {
@@ -52,7 +74,6 @@ public class BasicTestCase {
 				pageSource = driver.getPageSource();
 			}
 		}
-		 
 		pm.getPageHome().clearDialog();
 		pm.getPageHome().gotoFlight();
 		//firstpage=new PageFlightFirstPage(driver);

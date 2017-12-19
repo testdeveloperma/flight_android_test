@@ -36,7 +36,7 @@ public class AppiumServer {
 		cap.setCapability("fullReset", false);
 		cap.setCapability("dontStopAppOnReset", true);
 		cap.setCapability("platformVersion", "7.0");
-		if(appurl != null || !appurl.equals("")){
+		if(appurl != null && !appurl.equals("")){
 			cap.setCapability("app", appurl);
 		}
 		cap.setCapability("appPackage", "com.dp.android.elong");
