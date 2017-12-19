@@ -8,6 +8,7 @@ import com.appium.base.AndroidTool;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
@@ -31,11 +32,13 @@ public class PageHome {
 	}
 
 	public void clearDialog(){
-		String pageSource = driver.getPageSource();
-		String id = "com.elong.android.home:id/img_zhichong_close";
-		if(pageSource.contains(id)){
-			driver.findElementById(id).click();
-		}
+//		String pageSource = driver.getPageSource();
+//		String id = "com.elong.android.home:id/img_zhichong_close";
+//		if(pageSource.contains(id)){
+//			driver.findElementById(id).click();
+//		}
+		TouchAction touch = new TouchAction(driver);
+		touch.press(300, 2480).release().perform();
 	}
 
 	public void gotoFlight(){
