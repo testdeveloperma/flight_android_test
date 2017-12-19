@@ -52,7 +52,7 @@ public class BasicTestCase {
 				pageSource = driver.getPageSource();
 			}
 		}
-		 
+		 Thread.sleep(2500);
 		pm.getPageHome().clearDialog();
 		pm.getPageHome().gotoFlight();		
 	}
