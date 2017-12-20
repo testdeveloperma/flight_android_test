@@ -20,8 +20,11 @@ public class PageDomesticOrderEdit{
 	//@AndroidFindBy(accessibility="")
 	MobileElement addCustomer;
 
-	public PageDomesticOrderEdit(AppiumDriver driver) {
+	private String build;
+
+	public PageDomesticOrderEdit(AppiumDriver driver,String build) {
 		this.driver = driver;
+		this.build = build;
 		// TODO Auto-generated constructor stub
 		// driver.execute(driverCommand, parameters);
 	}
@@ -43,7 +46,7 @@ public class PageDomesticOrderEdit{
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "DomesticOrderEdit");
+			AndroidTool.takeScreenShot(build,driver, "DomesticOrderEdit");
 		}
 		// 确认页10秒进度条
 		try {

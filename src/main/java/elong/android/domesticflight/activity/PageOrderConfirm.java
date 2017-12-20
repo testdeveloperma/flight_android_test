@@ -18,10 +18,13 @@ public class PageOrderConfirm {
 	MobileElement gotoPay;
 	@AndroidFindBy(id="com.elong.android.flight:id/tv_order_confirm_price")
 	MobileElement totalPrice;
-	public PageOrderConfirm(AppiumDriver driver){
+	
+	private String build;
+
+	public PageOrderConfirm(AppiumDriver driver,String build){
 		
 		this.driver = driver;
-		
+		this.build = build;
 	}
 	
 	
@@ -32,7 +35,7 @@ public class PageOrderConfirm {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "OrderConfirm");
+			AndroidTool.takeScreenShot(build,driver, "OrderConfirm");
 		}
 
 	}

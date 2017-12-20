@@ -29,8 +29,8 @@ public class BasicTestCase2 {
 //	PageFlightFirstPage firstpage;
 	static PageManager pm;
 	@BeforeTest
-	@Parameters("appurl")
-	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
+	@Parameters(value={"appurl","build"})
+	public void beforeSuite(String appurl,String build) throws MalformedURLException, InterruptedException{
 		String force = "adb shell am force-stop io.appium.unlock";
 		AndroidTool.executeAdbShell(force);
 		
@@ -59,7 +59,7 @@ public class BasicTestCase2 {
 		
 		
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		pm = new PageManager(driver);
+		pm = new PageManager(driver,build);
 		//appium=new AndroidTool(driver);
 		
 	//	boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		

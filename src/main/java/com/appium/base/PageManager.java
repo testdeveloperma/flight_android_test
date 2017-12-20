@@ -54,17 +54,18 @@ public class PageManager {
 
 	PageInternationalFlightEdit pageInternationalFlightEdit;
 	
+	private String build;
 	
-	public PageManager(AppiumDriver driver) {
+	public PageManager(AppiumDriver driver,String build) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		decorator = new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS);
-	
+		this.build = build;
 	}
 
 	public  PageHome getPageHome() {
 		if(pageHome == null){
-			pageHome = new PageHome(driver);
+			pageHome = new PageHome(driver,build);
 		}
 		
 		PageFactory.initElements(decorator, pageHome);
@@ -85,7 +86,7 @@ public class PageManager {
 
 	public PageDomesticFlightList getPageDomesticFlightList() {
 		if(pageDomesticFlightList == null){
-			pageDomesticFlightList = new PageDomesticFlightList(driver);
+			pageDomesticFlightList = new PageDomesticFlightList(driver,build);
 		}
 		PageFactory.initElements(decorator, pageDomesticFlightList);
 		
@@ -95,7 +96,7 @@ public class PageManager {
 
 	public PageDomesticCabinDetail getPageDomesticCabinDetail() {
 		if(pageDomesticCabinDetail == null){
-			pageDomesticCabinDetail = new PageDomesticCabinDetail(driver);
+			pageDomesticCabinDetail = new PageDomesticCabinDetail(driver,build);
 		}
 		
 		PageFactory.initElements(decorator, pageDomesticCabinDetail);
@@ -106,7 +107,7 @@ public class PageManager {
 
 	public PageDomesticOrderEdit getPageDomesticOrderEdit() {
 		if(pageDomesticOrderEdit == null){
-			pageDomesticOrderEdit = new PageDomesticOrderEdit(driver);
+			pageDomesticOrderEdit = new PageDomesticOrderEdit(driver,build);
 		}
 		
 		PageFactory.initElements(decorator, pageDomesticOrderEdit);		
@@ -126,7 +127,7 @@ public class PageManager {
 
 	public PageOrderConfirm getPageOrderConfirm() {
 		if(pageOrderConfirm == null){
-			pageOrderConfirm = new PageOrderConfirm(driver);
+			pageOrderConfirm = new PageOrderConfirm(driver,build);
 		}
 		
 		PageFactory.initElements(decorator, pageOrderConfirm);		
@@ -137,7 +138,7 @@ public class PageManager {
 	public PageOrderPay getPageOrderPay() {
 		
 		if(pageOrderPay == null){
-			pageOrderPay = new PageOrderPay(driver);
+			pageOrderPay = new PageOrderPay(driver,build);
 		}
 		
 		PageFactory.initElements(decorator, pageOrderPay);		
@@ -166,7 +167,7 @@ public class PageManager {
 
 	public PageFlightFirstPage getPageFlightFirstPage(){
 		if(pageFlightFirstPage == null){
-			pageFlightFirstPage = new PageFlightFirstPage(driver);
+			pageFlightFirstPage = new PageFlightFirstPage(driver,build);
 		}
 		
 		PageFactory.initElements(decorator, pageFlightFirstPage);		

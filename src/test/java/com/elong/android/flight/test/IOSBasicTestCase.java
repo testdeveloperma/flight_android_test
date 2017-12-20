@@ -23,10 +23,10 @@ public class IOSBasicTestCase {
 //	PageFlightFirstPage firstpage;
 	PageManager pm;
 	@BeforeClass
-	public void setUp() throws MalformedURLException, InterruptedException{
+	public void setUp(String build) throws MalformedURLException, InterruptedException{
 		driver=new MyDriver().iosDriverRun();
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		pm = new PageManager(driver);
+		pm = new PageManager(driver,build);
 		appium=new AndroidTool(driver);
 				
 		pm.getPageHome().gotoFlight();

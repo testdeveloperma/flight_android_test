@@ -24,11 +24,13 @@ public class PageHome {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.widget.RelativeLayout[1]")
 	MobileElement flight_button;
 
+	private String build;
+
 	
-	
-	public PageHome(AppiumDriver<WebElement> driver) {
+	public PageHome(AppiumDriver<WebElement> driver,String build) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
+		this.build = build;
 	}
 
 	public void clearDialog(){
@@ -48,7 +50,7 @@ public class PageHome {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "homepage");
+			AndroidTool.takeScreenShot(build,driver, "homepage");
 			
 		}
 	}

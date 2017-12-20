@@ -13,6 +13,8 @@ public class PageInternationalFlightDetail {
 	
 	@AndroidFindBy(id="com.elong.android.flight:id/cabinBook")
 	MobileElement cabinBook;
+
+	private String build;
 	
 	
 	public void selectCabin(){
@@ -21,7 +23,7 @@ public class PageInternationalFlightDetail {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "InternationalFlightDetail");
+			AndroidTool.takeScreenShot(build,driver, "InternationalFlightDetail");
 		}
 	}
 }

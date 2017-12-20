@@ -18,6 +18,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
 
 import io.appium.java_client.AppiumDriver;
 //import android.app.Activity;
@@ -54,16 +55,24 @@ public class AndroidTool {
 		}
 	}
 
-	// 截屏图片保存路径
-	static String path = "";
+	public static void main(String[] args) {
+		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
+		String path = classUrl.getPath();
+		System.out.println("path:" + path);
+	}
 
 	/*
 	 * 截屏 tag表示一个模块标记字符
 	 */
-	public static void takeScreenShot(AppiumDriver<WebElement> driver, String tag) {
-		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
-		path = classUrl.getPath();
+	public static void takeScreenShot(String build,AppiumDriver<WebElement> driver, String tag) {
+//		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
+//		String path = classUrl.getPath();
+		
+		String path = "E:/jenkins/jobs/android-automation-test/builds/" + build + "/picture/";
 		System.out.println("path:" + path);
+		File file = new File(path);
+		if(!file.exists())
+			file.mkdirs();
 		File screenShotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(screenShotFile, new File(path + tag + getCurrentDateTime() + ".jpg"));
@@ -150,10 +159,7 @@ public class AndroidTool {
 		return br;
 	}
 
-	public static void main(String[] args) {
-		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
-		getAdbShellResult(cmd);
-	}
+	
 
 	/**
 	 * 获取当前日期自动加25天

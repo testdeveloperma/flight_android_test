@@ -29,12 +29,12 @@ public class BasicTestCase {
 	AndroidTool appium;
 	static PageManager pm;
 	@BeforeTest
-	@Parameters("appurl")
-	public void beforeSuite(String appurl) throws MalformedURLException, InterruptedException{
+	@Parameters(value={"appurl","build"})
+	public void beforeSuite(String appurl,String build) throws MalformedURLException, InterruptedException{
 				
 		driver = new AppiumServer().androidDriverRun(appurl);
 		
-		pm = new PageManager(driver);
+		pm = new PageManager(driver,build);
 		
 		String pageSource = driver.getPageSource();
 		String continueee = "com.dp.android.elong:id/continueee";

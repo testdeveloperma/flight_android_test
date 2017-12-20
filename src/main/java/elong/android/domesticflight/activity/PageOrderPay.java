@@ -23,8 +23,10 @@ public class PageOrderPay {
 	@iOSFindBy(accessibility="查看订单")
 	@AndroidFindBy(id="com.dp.android.elong:id/dialog_positive_button")
 	public MobileElement lookOrder; //查看订单
-	public PageOrderPay(AppiumDriver<WebElement> driver){
+	private String build;
+	public PageOrderPay(AppiumDriver<WebElement> driver,String build){
 		this.driver = driver;
+		this.build = build;
 	}
 	public void gotoOrderDetail(){
 		try {
@@ -32,7 +34,7 @@ public class PageOrderPay {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "lookOrder");
+			AndroidTool.takeScreenShot(build,driver, "lookOrder");
 		}
 	}
 	
@@ -43,7 +45,7 @@ public class PageOrderPay {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "orderPay");
+			AndroidTool.takeScreenShot(build,driver, "orderPay");
 		}
 	}
 	

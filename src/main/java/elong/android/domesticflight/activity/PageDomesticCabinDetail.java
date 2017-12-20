@@ -30,11 +30,12 @@ public class PageDomesticCabinDetail extends AndroidTool {
 	private MobileElement departTime; // 出发时间
 	@AndroidFindBy(id = "com.elong.android.flight:id/tv_flight_number_time_end")
 	private MobileElement arriveTime; // 到达时间
-
-	public PageDomesticCabinDetail(AppiumDriver driver) {
+	
+	private String build;
+	public PageDomesticCabinDetail(AppiumDriver driver,String build) {
 		super(driver);
 		this.driver = driver;
-
+		this.build = build;
 	}
 
 	public CabinDetailData getCabinDetailData() {
@@ -68,7 +69,7 @@ public class PageDomesticCabinDetail extends AndroidTool {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "DomesticCabinDetail");
+			AndroidTool.takeScreenShot(build,driver, "DomesticCabinDetail");
 		}
 
 	}

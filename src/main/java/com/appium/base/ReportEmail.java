@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.jsoup.Jsoup;
@@ -14,7 +16,7 @@ import org.jsoup.select.Elements;
 
 public class ReportEmail {
 
-	public static void main(String[] args) {
+	public static void main(String build) {
 		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 		String agentPath = classUrl.getPath();
 		String[] split = agentPath.split("target");
@@ -42,14 +44,23 @@ public class ReportEmail {
 		Elements elementsByTag = document.getElementsByTag("pre");
 		if(elementsByTag != null)
 			elementsByTag.remove();
-		try {
-			EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), document.html());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			EmailUtil.sendEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), document.html());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		// sendTestNgEmail();
-
+		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
+		String[] recip = {"chengjun.ma@corp.elong.com"};
+		File dirctorypath = new File("E:/jenkins/jobs/android-automation-test/builds/" + build + "/picture/");
+		List<String> fileFromDir = FileHandler.getFileFromDir(dirctorypath);
+		List<File> attachments = new ArrayList<>();
+		for (String filepath : fileFromDir) {
+			File f = new File(filepath);
+			attachments.add(f);
+		}
+		se.doSendHtmlEmail("测试", document.html(), recip, attachments);
 	}
 
 	public static void sendTestNgEmail() {

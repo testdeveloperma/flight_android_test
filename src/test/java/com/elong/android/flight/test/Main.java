@@ -31,9 +31,9 @@ public class Main {
 			DialogCheck dialogCheck = new DialogCheck(driver);
 			installThread.start();
 			dialogCheck.start();
-						
+			String build = null;			
 			//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			pm = new PageManager(driver);
+			pm = new PageManager(driver,build);
 			//appium=new AndroidTool(driver);
 			
 		//	boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		

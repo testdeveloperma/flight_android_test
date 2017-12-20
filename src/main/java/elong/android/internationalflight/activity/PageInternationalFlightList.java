@@ -16,13 +16,15 @@ public class PageInternationalFlightList {
 	
 	@AndroidFindBy(xpath="//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/iflightList\"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]")
 	MobileElement backFlight;
+
+	private String build;
 	public void selectFlight(){
 		try {
 			flight1.click();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "InternationalFlightList");
+			AndroidTool.takeScreenShot(build,driver, "InternationalFlightList");
 		}
 	}
 	
@@ -33,7 +35,7 @@ public class PageInternationalFlightList {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "InternationalRoundFlightList");
+			AndroidTool.takeScreenShot(build,driver, "InternationalRoundFlightList");
 		}
 	}
 }

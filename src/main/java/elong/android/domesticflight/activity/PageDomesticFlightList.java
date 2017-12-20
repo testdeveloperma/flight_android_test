@@ -31,9 +31,12 @@ public class PageDomesticFlightList extends AndroidTool {
 	@AndroidFindBy(id="com.elong.android.flight:id/tv_cur_day_info")
 	private MobileElement departDate; // 出发日期
 
-	public PageDomesticFlightList(AppiumDriver driver) {
+	private String build;
+
+	public PageDomesticFlightList(AppiumDriver driver,String build) {
 		super(driver);
 		this.driver = driver;
+		this.build = build;
 	}
 
 	/**
@@ -65,7 +68,7 @@ public class PageDomesticFlightList extends AndroidTool {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "DomesticFlightList");
+			AndroidTool.takeScreenShot(build,driver, "DomesticFlightList");
 		}
 			
 	}

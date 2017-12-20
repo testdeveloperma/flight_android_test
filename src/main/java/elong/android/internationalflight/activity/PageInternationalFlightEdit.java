@@ -13,6 +13,8 @@ public class PageInternationalFlightEdit {
 	
 	@AndroidFindBy(id="com.elong.android.flight:id/next")
 	MobileElement next;
+
+	private String build;
 	
 	
 	public void submitOrder(){
@@ -21,7 +23,7 @@ public class PageInternationalFlightEdit {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(driver, "InternationalFlightEdit");
+			AndroidTool.takeScreenShot(build,driver, "InternationalFlightEdit");
 		}
 	}
 }

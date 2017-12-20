@@ -33,9 +33,11 @@ public class PageFlightFirstPage{
 	boolean foundActivity;
 	@AndroidFindBy(id="com.elong.android.flight:id/flightsearch_leave_date")
 	MobileElement departDate;		//出发日期标签
-	public PageFlightFirstPage(AppiumDriver driver) {	
+	
+	
+	public PageFlightFirstPage(AppiumDriver driver,String build) {	
 		this.driver = driver;
-		pm = new PageManager(driver);
+		pm = new PageManager(driver,build);
 	}
 	public void clearBoot(){
 		String pageSource = driver.getPageSource();
