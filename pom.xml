@@ -25,6 +25,10 @@
 						<systemPropertyVariables>
 							<appurl>${appurl}</appurl>
 						</systemPropertyVariables>
+						
+						<systemPropertyVariables>
+							<appurl>${build}</appurl>
+						</systemPropertyVariables>
 
 						<suiteXmlFiles>
 							<suiteXmlFile>testng.xml</suiteXmlFile>

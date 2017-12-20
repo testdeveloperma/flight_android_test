@@ -3,6 +3,7 @@
 <suite name="android suite" verbose="1">
 
 	<parameter name="appurl" value="${appurl}" />
+	<parameter name="build" value="${build}" />
 	<!--<parameter name="appurl" value="" />
 	 <parameter name="appurl" value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_108.apk" 
 		/> -->
