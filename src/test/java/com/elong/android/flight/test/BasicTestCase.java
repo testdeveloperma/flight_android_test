@@ -31,7 +31,7 @@ public class BasicTestCase {
 	@BeforeTest
 	@Parameters(value={"appurl","build"})
 	public void beforeSuite(String appurl,String build) throws MalformedURLException, InterruptedException{
-				
+		System.out.println("appurl:" + appurl);
 		driver = new AppiumServer().androidDriverRun(appurl);
 		
 		pm = new PageManager(driver,build);
