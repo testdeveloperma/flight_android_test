@@ -27,7 +27,7 @@
 						</systemPropertyVariables>
 						
 						<systemPropertyVariables>
-							<appurl>${build}</appurl>
+							<build>${build}</build>
 						</systemPropertyVariables>
 
 						<suiteXmlFiles>
