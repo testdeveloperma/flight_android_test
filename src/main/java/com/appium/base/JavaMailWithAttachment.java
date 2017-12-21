@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
+import org.aspectj.weaver.tools.cache.GeneratedCachedClassHandler;
+
 public class JavaMailWithAttachment {
 	private MimeMessage message;
 	private Session session;
@@ -40,18 +43,13 @@ public class JavaMailWithAttachment {
 	 */
 	public JavaMailWithAttachment(boolean debug) {
 		Properties properties = new Properties();
-		File directory = new File("");
-		String proPath = null;
-		try {
-			proPath = directory.getCanonicalPath();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} // 获取工程路径
+		
+		String proPath = this.getClass().getClassLoader().getResource("").getPath();
+		
 		System.out.println(proPath);
 		FileInputStream in = null;
 		try {
-			in = new FileInputStream(proPath + "/src/main/resources/mailserver.properties");
+			in = new FileInputStream(proPath + "mailserver.properties");
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -161,13 +159,22 @@ public class JavaMailWithAttachment {
 	}
 
 	public static void main(String[] args) {
-		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
-		List<File> affix = new ArrayList<>();
-		File file1 = new File("/Users/user/Documents/QQ20171208-0.jpg");
-		File file2 = new File("/Users/user/Documents/app.png");
-		affix.add(file1);
-		affix.add(file2);
-		String[] to = {"chengjun.ma@corp.elong.com"};
-		se.doSendHtmlEmail("邮件主题", "邮件内容",to, affix);
+//		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
+//		List<File> affix = new ArrayList<>();
+//		File file1 = new File("/Users/user/Documents/QQ20171208-0.jpg");
+//		File file2 = new File("/Users/user/Documents/app.png");
+//		affix.add(file1);
+//		affix.add(file2);
+//		String[] to = {"chengjun.ma@corp.elong.com"};
+//		se.doSendHtmlEmail("邮件主题", "邮件内容",to, affix);
+		JavaMailWithAttachment jm = new JavaMailWithAttachment(false);
+		jm.getPath();
+		
+//		System.out.println(proPath);
+	}
+	
+	public  void getPath(){
+		URL resource = this.getClass().getClassLoader().getResource("");
+		System.err.println(resource.getPath());
 	}
 }
