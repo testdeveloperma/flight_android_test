@@ -52,7 +52,7 @@ public class ReportEmail {
 //		}
 		// sendTestNgEmail();
 		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
-		String[] recip = {"chengjun.ma@corp.elong.com"};
+		String[] recip = {"chengjun.ma@corp.elong.com","Tech-Test-Air@corp.elong.com"};
 		File dirctorypath = new File("E:/jenkins/jobs/android-automation-test/builds/" + build + "/picture/");
 		List<String> fileFromDir = FileHandler.getFileFromDir(dirctorypath);
 		List<File> attachments = new ArrayList<>();
@@ -60,7 +60,7 @@ public class ReportEmail {
 			File f = new File(filepath);
 			attachments.add(f);
 		}
-		se.doSendHtmlEmail("测试", document.html(), recip, attachments);
+		se.doSendHtmlEmail("安卓自动化测试-执行时间" + DateFormatUtil.getCurrentTime(), document.html(), recip, attachments);
 	}
 
 	public static void sendTestNgEmail() {
