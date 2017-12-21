@@ -52,7 +52,7 @@ public class ReportEmail {
 //		}
 		// sendTestNgEmail();
 		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
-		String[] recip = {"chengjun.ma@corp.elong.com","Tech-Test-Air@corp.elong.com"};
+		String[] recip = {"chengjun.ma@corp.elong.com"};
 		File dirctorypath = new File("E:/jenkins/jobs/android-automation-test/builds/" + build[0] + "/picture/");
 		List<String> fileFromDir = FileHandler.getFileFromDir(dirctorypath);
 		List<File> attachments = new ArrayList<>();
