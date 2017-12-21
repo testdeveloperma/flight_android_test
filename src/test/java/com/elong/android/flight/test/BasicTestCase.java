@@ -60,7 +60,7 @@ public class BasicTestCase {
 			}
 		}		
 		Thread.sleep(2500);
-		pm.getPageHome().clearDialog();
+		pm.getPageHome().clearDialog(width,height);
 		pm.getPageHome().gotoFlight();		
 	}
 	

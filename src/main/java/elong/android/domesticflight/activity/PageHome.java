@@ -1,7 +1,6 @@
 package elong.android.domesticflight.activity;
 
 
-import org.apache.tools.ant.taskdefs.condition.And;
 import org.openqa.selenium.WebElement;
 
 import com.appium.base.AndroidTool;
@@ -33,14 +32,16 @@ public class PageHome {
 		this.build = build;
 	}
 
-	public void clearDialog(){
+	public void clearDialog(int width,int height){
 //		String pageSource = driver.getPageSource();
 //		String id = "com.elong.android.home:id/img_zhichong_close";
 //		if(pageSource.contains(id)){
 //			driver.findElementById(id).click();
 //		}
+		int x = 300*width/1540;
+		int y = 2480*height/2660;
 		TouchAction touch = new TouchAction(driver);
-		touch.press(300, 2480).release().perform();
+		touch.press(x, y).release().perform();
 	}
 
 	public void gotoFlight(){

@@ -54,7 +54,7 @@ public class Main {
 					pageSource = driver.getPageSource();
 				}
 			}
-			pm.getPageHome().clearDialog();
+//			pm.getPageHome().clearDialog();
 			pm.getPageHome().gotoFlight();
 			//firstpage=new PageFlightFirstPage(driver);
 			

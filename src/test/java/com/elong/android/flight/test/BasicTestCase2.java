@@ -61,7 +61,8 @@ public class BasicTestCase2 {
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		pm = new PageManager(driver,build);
 		//appium=new AndroidTool(driver);
-		
+		int width = driver.manage().window().getSize().width;
+		int height = driver.manage().window().getSize().height;
 	//	boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		
 	//	Assert.assertTrue(foundTabHomeActivity);
 		String pageSource = driver.getPageSource();
@@ -80,7 +81,7 @@ public class BasicTestCase2 {
 				pageSource = driver.getPageSource();
 			}
 		}
-		pm.getPageHome().clearDialog();
+		pm.getPageHome().clearDialog(width,height);
 		pm.getPageHome().gotoFlight();
 		//firstpage=new PageFlightFirstPage(driver);
 		
