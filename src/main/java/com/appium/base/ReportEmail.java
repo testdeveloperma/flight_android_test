@@ -14,6 +14,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import bsh.commands.dir;
+
 public class ReportEmail {
 
 	public static void main(String[] build) {
@@ -54,6 +56,8 @@ public class ReportEmail {
 		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
 		String[] recip = {"chengjun.ma@corp.elong.com"};
 		File dirctorypath = new File("E:/jenkins/jobs/android-automation-test/builds/" + build[0] + "/picture/");
+		System.out.println("number:" + build[0]);
+		System.out.println("attachpath" + dirctorypath.getAbsolutePath());
 		List<String> fileFromDir = FileHandler.getFileFromDir(dirctorypath);
 		List<File> attachments = new ArrayList<>();
 		for (String filepath : fileFromDir) {
