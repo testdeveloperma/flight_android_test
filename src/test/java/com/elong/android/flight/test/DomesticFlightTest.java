@@ -34,6 +34,7 @@ public class DomesticFlightTest extends BasicTestCase {
 		System.out.println(data.toString());
 		String departCity = String.valueOf(data.get("departCity"));
 		String arriveCity = String.valueOf(data.get("arriveCity"));
+		Thread.sleep(1000);
 		pm.getPageFlightFirstPage().searchFlight(departCity, arriveCity);
 		flightListData = pm.getPageDomesticFlightList().getFlightListData();
 

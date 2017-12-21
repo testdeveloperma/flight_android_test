@@ -39,7 +39,7 @@ public class PageHome {
 //			driver.findElementById(id).click();
 //		}
 		int x = 300*width/1540;
-		int y = 2480*height/2660;
+		int y = 2480*height/2560;
 		TouchAction touch = new TouchAction(driver);
 		touch.press(x, y).release().perform();
 	}

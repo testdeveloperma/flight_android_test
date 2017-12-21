@@ -2,6 +2,8 @@ package elong.android.domesticflight.activity;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebElement;
+
 import com.appium.base.AndroidTool;
 
 import io.appium.java_client.AppiumDriver;
@@ -9,14 +11,14 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageSelectCity {
-	AppiumDriver driver;
+	AppiumDriver<WebElement> driver;
 	
 	@AndroidFindBy(id="com.elong.android.flight:id/city_select_search")
 	MobileElement city_select_search;
 	@AndroidFindBy(id="com.elong.android.flight:id/flight_search_bottomtab_domestic")
 	MobileElement domestic;
 	
-	public PageSelectCity(AppiumDriver driver){
+	public PageSelectCity(AppiumDriver<WebElement> driver){
 		this.driver = driver;
 	}
 		

@@ -21,7 +21,7 @@ public class PageOrderConfirm {
 	
 	private String build;
 
-	public PageOrderConfirm(AppiumDriver driver,String build){
+	public PageOrderConfirm(AppiumDriver<WebElement> driver,String build){
 		
 		this.driver = driver;
 		this.build = build;

@@ -2,6 +2,7 @@ package com.appium.base;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import elong.android.domesticflight.activity.PageAddCustomer;
@@ -22,7 +23,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class PageManager {
-	AppiumDriver driver;
+	AppiumDriver<WebElement> driver;
 	
 	PageHome pageHome;
 	
@@ -56,7 +57,7 @@ public class PageManager {
 	
 	private String build;
 	
-	public PageManager(AppiumDriver driver,String build) {
+	public PageManager(AppiumDriver<WebElement> driver,String build) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		decorator = new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS);
