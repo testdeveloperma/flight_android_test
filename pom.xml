@@ -24,9 +24,6 @@
 
 						<systemPropertyVariables>
 							<appurl>${appurl}</appurl>
-						</systemPropertyVariables>
-						
-						<systemPropertyVariables>
 							<build>${build}</build>
 						</systemPropertyVariables>
 
