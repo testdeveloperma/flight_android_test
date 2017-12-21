@@ -37,23 +37,29 @@ public class BasicTestCase {
 		
 		pm = new PageManager(driver,build);
 		
-		String pageSource = driver.getPageSource();
-		String continueee = "com.dp.android.elong:id/continueee";
-		 for (int i = 0; i < 5; i++) {
-			if(pageSource.contains(continueee)){
-				
-				driver.findElementById("com.dp.android.elong:id/continueee").click();
+		int width = driver.manage().window().getSize().width;
+		int height = driver.manage().window().getSize().height;
+		System.out.println(width + "-->" + height);
+		if(!appurl.equals("0")){
+			String pageSource = driver.getPageSource();
+			String continueee = "com.dp.android.elong:id/continueee";
+			 for (int i = 0; i < 5; i++) {
+				if(pageSource.contains(continueee)){
+					
+					driver.findElementById("com.dp.android.elong:id/continueee").click();
 
-				break;
-			}else{
-				TouchAction touch = new TouchAction(driver);
-				touch.press(1100,1000).moveTo(-500, 0).release().perform();
-				Thread.sleep(500);
-				System.out.println(i);
-				pageSource = driver.getPageSource();
+					break;
+				}else{
+					TouchAction touch = new TouchAction(driver);
+					
+					touch.press(4*width/5,3*height/5).moveTo(-width/2, 0).release().perform();
+					Thread.sleep(500);
+					System.out.println(i);
+					pageSource = driver.getPageSource();
+				}
 			}
-		}
-		 Thread.sleep(2500);
+		}		
+		Thread.sleep(2500);
 		pm.getPageHome().clearDialog();
 		pm.getPageHome().gotoFlight();		
 	}

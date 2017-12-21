@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="android suite" parallel="tests"  verbose="1" thread-count="5">
+<suite name="android suite" parallel="tests" verbose="1"
+	thread-count="5">
 
 	<!--<parameter name="appurl" value="${appurl}" /> <parameter name="appurl" 
 		value="" /> -->
 	<parameter name="appurl"
 		value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_117.apk" />
-<!-- 	<test name="appium listener">
-		<classes>
-			<class name="com.appium.listener.AppiumListener" />
-		</classes>
-	</test> -->
+	<parameter name="build" value="666" />
+	<!-- <test name="appium listener"> <classes> <class name="com.appium.listener.AppiumListener" 
+		/> </classes> </test> -->
 	<test name="flight uitest">
 
 		<classes>
