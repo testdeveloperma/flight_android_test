@@ -49,7 +49,7 @@ public class DomesticFlightTest extends BasicTestCase {
 
 	}
 
-//	@Test(description = "选择自营第一个舱位，点击预定进入填写页")
+	@Test(description = "选择自营第一个舱位，点击预定进入填写页")
 	public void test3() {
 		pm.getPageDomesticCabinDetail().clickBookButton();
 		pm.getPageLogin().login();
