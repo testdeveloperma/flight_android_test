@@ -33,7 +33,7 @@ public class Main {
 			dialogCheck.start();
 			String build = null;			
 			//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			pm = new PageManager(driver,build);
+//			pm = new PageManager(driver,build);
 			//appium=new AndroidTool(driver);
 			
 		//	boolean foundTabHomeActivity=appium.waitForActivity("com.elong.activity.others.TabHomeActivity");		

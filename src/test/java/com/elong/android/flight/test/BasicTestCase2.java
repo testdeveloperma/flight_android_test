@@ -29,8 +29,8 @@ public class BasicTestCase2 {
 //	PageFlightFirstPage firstpage;
 	static PageManager pm;
 	@BeforeTest
-	@Parameters(value={"appurl","build"})
-	public void beforeSuite(String appurl,String build) throws MalformedURLException, InterruptedException{
+	@Parameters(value={"appurl","jenkinsHome","projectName","build"})
+	public void beforeSuite(String appurl,String jenkinsHome,String projectName,String build) throws MalformedURLException, InterruptedException{
 		String force = "adb shell am force-stop io.appium.unlock";
 		AndroidTool.executeAdbShell(force);
 		
@@ -59,7 +59,7 @@ public class BasicTestCase2 {
 		
 		
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		pm = new PageManager(driver,build);
+		pm = new PageManager(driver,jenkinsHome,projectName,build);
 		//appium=new AndroidTool(driver);
 		int width = driver.manage().window().getSize().width;
 		int height = driver.manage().window().getSize().height;

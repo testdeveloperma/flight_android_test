@@ -64,11 +64,11 @@ public class AndroidTool {
 	/*
 	 * 截屏 tag表示一个模块标记字符
 	 */
-	public static void takeScreenShot(String build,AppiumDriver<WebElement> driver, String tag) {
+	public static void takeScreenShot(String jenkinsHome,String project,String build,AppiumDriver<WebElement> driver, String tag) {
 //		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 //		String path = classUrl.getPath();
 		
-		String path = "E:/jenkins/jobs/android-automation-test/builds/" + build + "/picture/";
+		String path = jenkinsHome + "/jobs/" + project + "/builds/" + build + "/picture/";
 		System.out.println("path:" + path);
 		File file = new File(path);
 		if(!file.exists())

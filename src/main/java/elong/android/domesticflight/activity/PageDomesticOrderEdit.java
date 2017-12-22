@@ -11,25 +11,28 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class PageDomesticOrderEdit{
+public class PageDomesticOrderEdit {
 	AppiumDriver<WebElement> driver;
-	
-	@iOSFindBy(xpath="//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage/XCUIElementTypeButton[2]")
-	@AndroidFindBy(id="com.elong.android.flight:id/next")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage/XCUIElementTypeButton[2]")
+	@AndroidFindBy(id = "com.elong.android.flight:id/next")
 	MobileElement next;
-	//@AndroidFindBy(accessibility="")
+	// @AndroidFindBy(accessibility="")
 	MobileElement addCustomer;
 
 	private String build;
 
-	public PageDomesticOrderEdit(AppiumDriver driver,String build) {
-		this.driver = driver;
-		this.build = build;
-		// TODO Auto-generated constructor stub
-		// driver.execute(driverCommand, parameters);
-	}
+	private String jenkinsHome;
 
-	
+	private String project;
+
+	public PageDomesticOrderEdit(AppiumDriver<WebElement> driver, String jenkinsHome,String project, String build) {
+		// TODO Auto-generated constructor stub
+		this.driver = driver;
+		this.jenkinsHome = jenkinsHome;
+		this.project = project;
+		this.build = build;
+	}
 
 	public void addCustomer() throws InterruptedException, IOException {
 		addCustomer.click();
@@ -42,11 +45,11 @@ public class PageDomesticOrderEdit{
 		try {
 			next.click();
 			String id = "com.elong.android.flight:id/tv_direct_pay";
-			AndroidTool.dynamicClick(driver,id, 5);
+			AndroidTool.dynamicClick(driver, id, 5);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			AndroidTool.takeScreenShot(build,driver, "DomesticOrderEdit");
+			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "DomesticOrderEdit");
 		}
 		// 确认页10秒进度条
 		try {

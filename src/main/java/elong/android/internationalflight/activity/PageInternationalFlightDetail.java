@@ -10,20 +10,23 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageInternationalFlightDetail {
 	AppiumDriver<WebElement> driver;
-	
-	@AndroidFindBy(id="com.elong.android.flight:id/cabinBook")
+
+	@AndroidFindBy(id = "com.elong.android.flight:id/cabinBook")
 	MobileElement cabinBook;
 
 	private String build;
-	
-	
-	public void selectCabin(){
+
+	private String jenkinsHome;
+
+	private String project;
+
+	public void selectCabin() {
 		try {
 			cabinBook.click();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(build,driver, "InternationalFlightDetail");
+			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "InternationalFlightDetail");
 		}
 	}
 }

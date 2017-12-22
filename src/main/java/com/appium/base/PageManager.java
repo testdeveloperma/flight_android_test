@@ -57,16 +57,21 @@ public class PageManager {
 	
 	private String build;
 	
-	public PageManager(AppiumDriver<WebElement> driver,String build) {
+	private String jenkinsHome;
+	private String projectName;
+	
+	public PageManager(AppiumDriver<WebElement> driver,String jenkinsHome,String projectName,String build) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		decorator = new AppiumFieldDecorator(driver, 15, TimeUnit.SECONDS);
+		this.jenkinsHome = jenkinsHome;
+		this.projectName = projectName;
 		this.build = build;
 	}
 
 	public  PageHome getPageHome() {
 		if(pageHome == null){
-			pageHome = new PageHome(driver,build);
+			pageHome = new PageHome(driver,jenkinsHome,projectName,build);
 		}
 		
 		PageFactory.initElements(decorator, pageHome);
@@ -87,7 +92,7 @@ public class PageManager {
 
 	public PageDomesticFlightList getPageDomesticFlightList() {
 		if(pageDomesticFlightList == null){
-			pageDomesticFlightList = new PageDomesticFlightList(driver,build);
+			pageDomesticFlightList = new PageDomesticFlightList(driver,jenkinsHome,projectName,build);
 		}
 		PageFactory.initElements(decorator, pageDomesticFlightList);
 		
@@ -97,7 +102,7 @@ public class PageManager {
 
 	public PageDomesticCabinDetail getPageDomesticCabinDetail() {
 		if(pageDomesticCabinDetail == null){
-			pageDomesticCabinDetail = new PageDomesticCabinDetail(driver,build);
+			pageDomesticCabinDetail = new PageDomesticCabinDetail(driver,jenkinsHome,projectName,build);
 		}
 		
 		PageFactory.initElements(decorator, pageDomesticCabinDetail);
@@ -108,7 +113,7 @@ public class PageManager {
 
 	public PageDomesticOrderEdit getPageDomesticOrderEdit() {
 		if(pageDomesticOrderEdit == null){
-			pageDomesticOrderEdit = new PageDomesticOrderEdit(driver,build);
+			pageDomesticOrderEdit = new PageDomesticOrderEdit(driver,jenkinsHome,projectName,build);
 		}
 		
 		PageFactory.initElements(decorator, pageDomesticOrderEdit);		
@@ -128,7 +133,7 @@ public class PageManager {
 
 	public PageOrderConfirm getPageOrderConfirm() {
 		if(pageOrderConfirm == null){
-			pageOrderConfirm = new PageOrderConfirm(driver,build);
+			pageOrderConfirm = new PageOrderConfirm(driver,jenkinsHome,projectName,build);
 		}
 		
 		PageFactory.initElements(decorator, pageOrderConfirm);		
@@ -139,7 +144,7 @@ public class PageManager {
 	public PageOrderPay getPageOrderPay() {
 		
 		if(pageOrderPay == null){
-			pageOrderPay = new PageOrderPay(driver,build);
+			pageOrderPay = new PageOrderPay(driver,jenkinsHome,projectName,build);
 		}
 		
 		PageFactory.initElements(decorator, pageOrderPay);		
@@ -168,7 +173,7 @@ public class PageManager {
 
 	public PageFlightFirstPage getPageFlightFirstPage(){
 		if(pageFlightFirstPage == null){
-			pageFlightFirstPage = new PageFlightFirstPage(driver,build);
+			pageFlightFirstPage = new PageFlightFirstPage(driver,jenkinsHome,projectName,build);
 		}
 		
 		PageFactory.initElements(decorator, pageFlightFirstPage);		

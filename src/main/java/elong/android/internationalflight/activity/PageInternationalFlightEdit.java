@@ -10,20 +10,23 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageInternationalFlightEdit {
 	AppiumDriver<WebElement> driver;
-	
-	@AndroidFindBy(id="com.elong.android.flight:id/next")
+
+	@AndroidFindBy(id = "com.elong.android.flight:id/next")
 	MobileElement next;
 
 	private String build;
-	
-	
-	public void submitOrder(){
+
+	private String jenkinsHome;
+
+	private String project;
+
+	public void submitOrder() {
 		try {
 			next.click();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(build,driver, "InternationalFlightEdit");
+			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "InternationalFlightEdit");
 		}
 	}
 }

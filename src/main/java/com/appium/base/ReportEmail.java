@@ -18,7 +18,7 @@ import bsh.commands.dir;
 
 public class ReportEmail {
 
-	public static void main(String[] build) {
+	public static void main(String ...build) {
 		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 		String agentPath = classUrl.getPath();
 		String[] split = agentPath.split("target");
@@ -55,7 +55,7 @@ public class ReportEmail {
 		// sendTestNgEmail();
 		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
 		String[] recip = {"chengjun.ma@corp.elong.com"};
-		File dirctorypath = new File("E:/jenkins/jobs/android-automation-test/builds/" + build[0] + "/picture/");
+		File dirctorypath = new File(build[0] + "/jobs/" + build[1]+ "/builds/" + build[2] + "/picture/");
 		System.out.println("number:" + build[0]);
 		System.out.println("attachpath" + dirctorypath.getAbsolutePath());
 		List<String> fileFromDir = FileHandler.getFileFromDir(dirctorypath);

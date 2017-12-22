@@ -29,13 +29,15 @@ public class BasicTestCase {
 	AndroidTool appium;
 	static PageManager pm;
 	@BeforeTest
-	@Parameters(value={"appurl","build"})
-	public void beforeSuite(String appurl,String build) throws MalformedURLException, InterruptedException{
+	@Parameters(value={"appurl","jenkinsHome","projectName","build"})
+	public void beforeSuite(String appurl,String jenkinsHome,String projectName,String build) throws MalformedURLException, InterruptedException{
 		System.out.println("appurl:" + appurl);
+		System.out.println("jenkinsHome:" + jenkinsHome);
+		System.out.println("projectName:" + projectName);
 		System.out.println("build:" + build);
 		driver = new AppiumServer().androidDriverRun(appurl);
 		
-		pm = new PageManager(driver,build);
+		pm = new PageManager(driver,jenkinsHome,projectName,build);
 		
 		int width = driver.manage().window().getSize().width;
 		int height = driver.manage().window().getSize().height;

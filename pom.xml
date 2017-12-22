@@ -25,6 +25,8 @@
 						<systemPropertyVariables>
 							<appurl>${appurl}</appurl>
 							<build>${build}</build>
+							<jenkinsHome>${jenkinsHome}</jenkinsHome>
+							<projectName>${projectName}</projectName>
 						</systemPropertyVariables>
 
 						<suiteXmlFiles>

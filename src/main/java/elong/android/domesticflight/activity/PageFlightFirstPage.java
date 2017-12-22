@@ -35,9 +35,9 @@ public class PageFlightFirstPage{
 	MobileElement departDate;		//出发日期标签
 	
 	
-	public PageFlightFirstPage(AppiumDriver driver,String build) {	
+	public PageFlightFirstPage(AppiumDriver driver,String jenkinsHome,String project,String build) {	
 		this.driver = driver;
-		pm = new PageManager(driver,build);
+		pm = new PageManager(driver,jenkinsHome,project,build);
 	}
 	public void clearBoot(){
 		String pageSource = driver.getPageSource();
