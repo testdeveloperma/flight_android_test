@@ -38,6 +38,28 @@ public class PageHome {
 //		if(pageSource.contains(id)){
 //			driver.findElementById(id).click();
 //		}
+		String pageSource = driver.getPageSource();
+		String homepageid = "com.dp.android.elong:id/shouye";
+		for(int i=0; i< 6;i ++){
+			if(pageSource.contains(homepageid))
+				break;
+			else{
+				try {
+					Thread.sleep(1000);
+					pageSource = driver.getPageSource();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+				
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int x = 300*width/1540;
 		int y = 2480*height/2560;
 		TouchAction touch = new TouchAction(driver);
