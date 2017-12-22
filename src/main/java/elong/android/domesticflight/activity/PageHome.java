@@ -22,6 +22,12 @@ public class PageHome {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.widget.RelativeLayout[1]")
 	MobileElement flight_button;
 
+	@AndroidFindBy(id="com.dp.android.elong:id/home_debug_server")
+	MobileElement debug_server;
+	
+	@AndroidFindBy(xpath="//android.widget.ListView[@resource-id=\"com.dp.android.elong:id/popup_multicheck_list\"]/android.widget.LinearLayout[2]/android.widget.TextView[1]")
+	MobileElement preline;
+	
 	private String build;
 
 	private String jenkinsHome;
@@ -34,6 +40,18 @@ public class PageHome {
 		this.jenkinsHome = jenkinsHome;
 		this.project = project;
 		this.build = build;
+	}
+	
+	public void setPreLine(){
+		debug_server.click();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		preline.click();
 	}
 
 	public void clearDialog(int width, int height) {

@@ -15,9 +15,9 @@
 			<!-- -->
 
 			<class name="com.elong.android.flight.test.DomesticFlightTest" />
-			<!-- <class name="com.elong.android.flight.test.DomesticRoundFlightTest" />
+			<class name="com.elong.android.flight.test.DomesticRoundFlightTest" />
 			<class name="com.elong.android.flight.test.InternationalFlightTest" />
-			<class name="com.elong.android.flight.test.InternationalRoundFlightTest" /> -->
+			<class name="com.elong.android.flight.test.InternationalRoundFlightTest" />
 
 		</classes>
 

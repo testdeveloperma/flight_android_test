@@ -63,6 +63,9 @@ public class BasicTestCase {
 		}		
 		
 		pm.getPageHome().clearDialog(width,height);
+		
+		pm.getPageHome().setPreLine();
+		
 		pm.getPageHome().gotoFlight();		
 	}
 	
