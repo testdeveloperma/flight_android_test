@@ -36,7 +36,7 @@ public class PageSelectCity {
 //		city_select_search.sendKeys(city);
 		String cmd = "adb shell am broadcast -a clipper.set -e text " + city;
 		mAndroidUtil.executeAdbShell(cmd);
-		mAndroidUtil.dynamicWait(driver, "定位", 2000);
+		mAndroidUtil.dynamicWait(driver, "定位", 3000);
 		driver.pressKeyCode(50, AndroidKeyMetastate.META_CTRL_ON);
 		long end = System.currentTimeMillis();
 		System.out.println("time: " + (end - start));

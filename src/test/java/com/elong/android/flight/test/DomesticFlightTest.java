@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import com.appium.base.ExcelData;
 import elong.android.domesticflight.bean.CabinDetailData;
 import elong.android.domesticflight.bean.FlightListData;
-import io.appium.java_client.android.AndroidKeyCode;
 import jxl.read.biff.BiffException;
 
 public class DomesticFlightTest extends BasicTestCase {
