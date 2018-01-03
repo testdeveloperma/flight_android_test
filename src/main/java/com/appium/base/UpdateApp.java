@@ -65,14 +65,14 @@ public class UpdateApp {
 			appPath = download(appPath);
 		}		
 		String cmd = "adb install " + appPath;
-		AndroidTool.executeAdbShell(cmd);
+		mAndroidUtil.executeAdbShell(cmd);
 		System.out.println("安装成功！");
 	}
 
 	// 卸载
 	public void uninstall(String classname) {
 		String cmd = "adb uninstall " + classname;
-		AndroidTool.executeAdbShell(cmd);
+		mAndroidUtil.executeAdbShell(cmd);
 		System.out.println("卸载成功！");
 	}
 

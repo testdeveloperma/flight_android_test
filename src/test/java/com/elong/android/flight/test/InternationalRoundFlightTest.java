@@ -14,7 +14,7 @@ import jxl.read.biff.BiffException;
 public class InternationalRoundFlightTest extends BasicTestCase{
 
 //	private PageManager pm;
-//	private AppiumDriver<WebElement> driver;
+//	private AndroidDriver<WebElement> driver;
 	
 	
 	@BeforeClass

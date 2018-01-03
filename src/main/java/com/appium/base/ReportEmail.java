@@ -54,7 +54,7 @@ public class ReportEmail {
 //		}
 		// sendTestNgEmail();
 		JavaMailWithAttachment se = new JavaMailWithAttachment(false);
-		String[] recip = {"chengjun.ma@corp.elong.com"};
+		String[] recip = build[3].split(",");
 		File dirctorypath = new File(build[0] + "/jobs/" + build[1]+ "/builds/" + build[2] + "/picture/");
 		System.out.println("number:" + build[0]);
 		System.out.println("attachpath" + dirctorypath.getAbsolutePath());

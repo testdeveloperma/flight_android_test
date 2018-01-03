@@ -2,16 +2,17 @@ package elong.android.domesticflight.activity;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.Parameters;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyMetastate;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageLogin {
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 	
 	@iOSFindBy
 	@AndroidFindBy(id="com.dp.android.elong:id/login_phone")
@@ -22,7 +23,7 @@ public class PageLogin {
 	MobileElement loginButton;
 	@AndroidFindBy(id="com.dp.android.elong:id/tv_switch_login_way")
 	MobileElement loginwithPassword;
-	public PageLogin(AppiumDriver driver) {
+	public PageLogin(AndroidDriver driver) {
 		// TODO Auto-generated method stub
 		this.driver = driver;
 	}
@@ -33,8 +34,11 @@ public class PageLogin {
 		//Parameters userdata=new Parameters();
 		//18668147007  777777liu
 		loginwithPassword.click();
-		username.sendKeys(Parameters.username);
-		password.sendKeys(Parameters.password);
+		username.clear();
+		username.click();
+		mAndroidUtil.sendKeys(driver, Parameters.username);	
+		password.click();
+		mAndroidUtil.sendKeys(driver, Parameters.password);
 		loginButton.click();
 		
 		try {

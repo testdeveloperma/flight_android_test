@@ -3,30 +3,21 @@ package com.appium.listener;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.appium.base.AndroidTool;
-import com.appium.base.MyDriver;
-import com.appium.base.PageManager;
+import com.appium.base.mAndroidUtil;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 
 public class AppiumListener {
 
-	static AppiumDriver<WebElement> driver;
+	static AndroidDriver<WebElement> driver;
 	public static boolean isListen = true;
-	AndroidTool appium;
+	mAndroidUtil appium;
 
 	@BeforeTest
 	public void beforeSuite() throws MalformedURLException, InterruptedException {

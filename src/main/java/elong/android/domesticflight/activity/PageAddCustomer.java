@@ -4,20 +4,19 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebElement;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 public class PageAddCustomer {
-	AppiumDriver driver;
+	AndroidDriver driver;
 	WebElement chinese_name; // 中文姓名
 	WebElement select_id_type; // 证件类型
 	WebElement passport; // 护照
 	WebElement id_number; // 证件号码
 	WebElement ok; // 确认按钮
 
-	public PageAddCustomer(AppiumDriver driver) {
+	public PageAddCustomer(AndroidDriver driver) {
 		this.driver = driver;
 	}
 	//初始化视图
@@ -31,7 +30,7 @@ public class PageAddCustomer {
 			id_number = driver.findElementById("com.elong.android.flight:id/paper_number_text");
 			ok = driver.findElementById("com.elong.android.flight:id/flight_add_customer_ok");
 		} catch (Exception e) {
-			AndroidTool.screencap("addcustomer");
+			mAndroidUtil.screencap("addcustomer");
 			e.printStackTrace();
 		}
 	}

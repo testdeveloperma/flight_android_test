@@ -27,6 +27,7 @@
 							<build>${build}</build>
 							<jenkinsHome>${jenkinsHome}</jenkinsHome>
 							<projectName>${projectName}</projectName>
+							<isonline>${isonline}</isonline>
 						</systemPropertyVariables>
 
 						<suiteXmlFiles>

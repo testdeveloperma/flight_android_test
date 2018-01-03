@@ -1,19 +1,19 @@
 package elong.android.domesticflight.activity;
 
 import java.util.List;
+import java.util.Random;
 
-import org.openqa.selenium.WebElement;
-
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 
 import elong.android.domesticflight.bean.FlightListData;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
 
 public class PageDomesticFlightList{
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 
 	@AndroidFindBy(id = "com.elong.android.flight:id/ll_pre_day")
 	private MobileElement lastDay; // 前一天按钮
@@ -37,9 +37,9 @@ public class PageDomesticFlightList{
 
 	private String project;
 
-	public PageDomesticFlightList(AppiumDriver<WebElement> driver, String jenkinsHome,String project, String build) {
+	public PageDomesticFlightList(AndroidDriver<MobileElement> driver2, String jenkinsHome,String project, String build) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		this.driver = driver2;
 		this.jenkinsHome = jenkinsHome;
 		this.project = project;
 		this.build = build;
@@ -75,9 +75,28 @@ public class PageDomesticFlightList{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome, project, build, driver, "DomesticFlightList");
+			mAndroidUtil.takeScreenShot(jenkinsHome, project, build, driver, "DomesticFlightList");
 		}
 
+	}
+	/**
+	 * 使用随机函数，随机选择一个航班
+	 */
+	public void selectFlight(){
+		int i = flightLists.size();
+		if(i <= 1){
+			selectFlight(0);
+		}else{
+			Random random = new Random();
+			int nextInt = random.nextInt(i-1);
+			selectFlight(nextInt);
+		}
+	}
+	
+	public static void main(String[] args) {
+		Random random = new Random();
+		int nextInt = random.nextInt(10);
+		System.out.println(nextInt);
 	}
 
 }

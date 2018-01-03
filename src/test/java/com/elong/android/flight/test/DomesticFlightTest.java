@@ -31,10 +31,8 @@ public class DomesticFlightTest extends BasicTestCase {
 	@Test(dataProvider = "city", description = "选择城市和日期搜索，进入航班列表")
 	public void test1(HashMap<String, String> data) throws InterruptedException, IOException {
 		pm.getPageFlightFirstPage().clearBoot();
-		System.out.println(data.toString());
 		String departCity = String.valueOf(data.get("departCity"));
 		String arriveCity = String.valueOf(data.get("arriveCity"));
-		Thread.sleep(1000);
 		pm.getPageFlightFirstPage().searchFlight(departCity, arriveCity);
 		flightListData = pm.getPageDomesticFlightList().getFlightListData();
 
@@ -43,7 +41,7 @@ public class DomesticFlightTest extends BasicTestCase {
 	@Test(description = "选择航班列表的第三个航班")
 	public void test2() {
 
-		pm.getPageDomesticFlightList().selectFlight(3);
+		pm.getPageDomesticFlightList().selectFlight();
 		cabinDetailData = pm.getPageDomesticCabinDetail().getCabinDetailData();
 		pm.getPageDomesticCabinDetail().getFlightTicketPrice();
 
@@ -56,7 +54,7 @@ public class DomesticFlightTest extends BasicTestCase {
 
 	}
 
-//	 @Test(description="创建订单，去支付")
+	@Test(description = "创建订单，去支付")
 	 public void test4() {
 	 pm.getPageDomesticOrderEdit().createOrder();
 	 pm.getPageOrderConfirm().gotoPay();

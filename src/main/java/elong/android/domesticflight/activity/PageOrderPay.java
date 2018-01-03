@@ -1,17 +1,15 @@
 package elong.android.domesticflight.activity;
 
-import org.openqa.selenium.WebElement;
+import com.appium.base.mAndroidUtil;
 
-import com.appium.base.AndroidTool;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageOrderPay {
 
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 	@AndroidFindBy(id = "com.dp.android.elong:id/payment_head_title")
 	MobileElement headTitle;
 	@iOSFindBy(accessibility = "basevc navback normal")
@@ -28,9 +26,9 @@ public class PageOrderPay {
 
 	private String project;
 
-	public PageOrderPay(AppiumDriver<WebElement> driver, String jenkinsHome,String project, String build) {
+	public PageOrderPay(AndroidDriver<MobileElement> driver2, String jenkinsHome,String project, String build) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		this.driver = driver2;
 		this.jenkinsHome = jenkinsHome;
 		this.project = project;
 		this.build = build;
@@ -42,7 +40,7 @@ public class PageOrderPay {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "lookOrder");
+			mAndroidUtil.takeScreenShot(jenkinsHome, project,build, driver, "lookOrder");
 		}
 	}
 
@@ -53,7 +51,7 @@ public class PageOrderPay {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "orderPay");
+			mAndroidUtil.takeScreenShot(jenkinsHome, project,build, driver, "orderPay");
 		}
 	}
 

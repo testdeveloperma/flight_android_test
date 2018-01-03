@@ -3,21 +3,18 @@ package com.appium.listener;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.WebElement;
-
-import com.appium.base.AndroidTool;
-
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class DialogCheck extends Thread {
 
 	public static boolean isListen = true;
 	// AndroidTool appium;
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 
-	public DialogCheck(AppiumDriver<WebElement> driver) {
+	public DialogCheck(AndroidDriver<MobileElement> driver2) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		this.driver = driver2;
 	}
 	@Override
 	public void run() {

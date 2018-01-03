@@ -4,18 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.openqa.selenium.WebElement;
-
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.PageManager;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageFlightFirstPage{
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 	PageManager pm;
 	@AndroidFindBy(id="com.elong.android.flight:id/flightssearch_arrivedate_trigger")
 	MobileElement backDate;		//返程出发日期
@@ -35,20 +35,20 @@ public class PageFlightFirstPage{
 	MobileElement departDate;		//出发日期标签
 	
 	
-	public PageFlightFirstPage(AppiumDriver driver,String jenkinsHome,String project,String build) {	
+	public PageFlightFirstPage(AndroidDriver<MobileElement> driver,String jenkinsHome,String project,String build) {	
 		this.driver = driver;
 		pm = new PageManager(driver,jenkinsHome,project,build);
 	}
 	public void clearBoot(){
 		String pageSource = driver.getPageSource();
 		String id = "com.elong.android.flight:id/btn_close";
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 4; i++) {
 			if(pageSource.contains(id)){
 				driver.findElementById(id).click();
 				break;
 			}else{
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -62,8 +62,12 @@ public class PageFlightFirstPage{
 
 	public void selectDepartDate(){
 		departDate.click();
-		String xpath = AndroidTool.getTimeXpath();
-		List<WebElement> flightDate = driver.findElementsByXPath(xpath);
+		TouchAction touch = new TouchAction(driver);
+		int width = mAndroidUtil.width;
+		int height = mAndroidUtil.height;
+		touch.press(4*width/5,height/5).moveTo(0, 2*height/5).release().perform();
+		String xpath = mAndroidUtil.getTimeXpath();
+		List<MobileElement> flightDate = driver.findElementsByXPath(xpath);
 		if(flightDate.size() > 1){
 			flightDate.get(1).click();
 		}else{
@@ -80,8 +84,8 @@ public class PageFlightFirstPage{
 	
 	public void selectBackDate(){
 		backDate.click();
-		String xpath = AndroidTool.getTimeXpath();
-		List<WebElement> flightDate = driver.findElementsByXPath(xpath);
+		String xpath = mAndroidUtil.getTimeXpath();
+		List<MobileElement> flightDate = driver.findElementsByXPath(xpath);
 			if(flightDate.size() > 1){
 				flightDate.get(1).click();
 			}else{
@@ -96,14 +100,9 @@ public class PageFlightFirstPage{
 	 */
 	public void selectDepartDate(String date){
 		departDate.click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String xpath = AndroidTool.getTimeXpath(date);
-		List<WebElement> today = driver.findElementsByXPath(xpath);
+		
+		String xpath = mAndroidUtil.getTimeXpath(date);
+		List<MobileElement> today = driver.findElementsByXPath(xpath);
 		String[] split = date.split("-");
 		SimpleDateFormat df = new SimpleDateFormat("MM");
 		String format = df.format(new Date());

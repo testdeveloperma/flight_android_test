@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
@@ -20,28 +21,68 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Parameters;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 //import android.app.Activity;
 //import android.app.Instrumentation.ActivityMonitor;
 //import android.content.IntentFilter;
 //import android.os.SystemClock;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyMetastate;
 import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
 
-public class AndroidTool {
+public class mAndroidUtil {
 
-	AppiumDriver<WebElement> driver;
-
-	public AndroidTool(AppiumDriver<WebElement> d) {
+	AndroidDriver<MobileElement> driver;
+	public static int width;
+	public static int height;
+	public mAndroidUtil(AndroidDriver<MobileElement> d) {
 		super();
 		this.driver = d;
 	}
 
-	public static void dynamicClick(AppiumDriver<WebElement> driver, String id, int c) {
-		String pageSource = driver.getPageSource();
+	public static void sendKeys(AndroidDriver<MobileElement> driver,String str){
+		String cmd = "adb shell am broadcast -a clipper.set -e text " + str;
+		executeAdbShell(cmd);		
+		driver.pressKeyCode(50, AndroidKeyMetastate.META_CTRL_ON);
+	}
+	
+	
+	public static Dimension getSize(AndroidDriver<MobileElement> driver2){
+		 Dimension size = driver2.manage().window().getSize();
+		 width = size.width;
+		 height = size.height;
+		 return size;
+	}
+	
+	
+	
+	public static void dynamicClick(AndroidDriver<MobileElement> driver2, String id, int c) {
+		String pageSource = driver2.getPageSource();
 		for (int i = 0; i < c; i++) {
 			if (pageSource.contains(id)) {
-				driver.findElementById(id).click();
+				driver2.findElementById(id).click();
+				break;
+			} else {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				pageSource = driver2.getPageSource();
+			}
+		}
+	}
+	/**
+	 * 动态等待
+	 * @param driver
+	 * @param id  页面包含的元素
+	 * @param c   最长等待时间，单位ms
+	 */
+	public static void dynamicWait(AndroidDriver<MobileElement> driver, String id, long c) {
+		String pageSource = driver.getPageSource();
+		for (int i = 0; i < c/500; i++) {
+			if (pageSource.contains(id)) {
 				break;
 			} else {
 				try {
@@ -64,7 +105,7 @@ public class AndroidTool {
 	/*
 	 * 截屏 tag表示一个模块标记字符
 	 */
-	public static void takeScreenShot(String jenkinsHome,String project,String build,AppiumDriver<WebElement> driver, String tag) {
+	public static void takeScreenShot(String jenkinsHome,String project,String build,AndroidDriver<MobileElement> driver2, String tag) {
 //		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 //		String path = classUrl.getPath();
 		
@@ -73,7 +114,7 @@ public class AndroidTool {
 		File file = new File(path);
 		if(!file.exists())
 			file.mkdirs();
-		File screenShotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File screenShotFile = ((TakesScreenshot) driver2).getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(screenShotFile, new File(path + tag + getCurrentDateTime() + ".jpg"));
 			// FileUtils.copyFile(screenShotFile, FileUtils.getFile(path),
@@ -124,6 +165,7 @@ public class AndroidTool {
 		if (os.contains("Mac")) {
 			cmd = "/Users/user/android-sdk-macosx/platform-tools/" + cmd;
 		}
+		System.out.println(cmd);
 		Process p;
 		try {
 			p = Runtime.getRuntime().exec(cmd);

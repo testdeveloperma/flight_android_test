@@ -2,20 +2,19 @@ package com.elong.android.flight.test;
 
 import java.net.MalformedURLException;
 
-import org.openqa.selenium.WebElement;
-
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
 import com.appium.listener.DialogCheck;
 import com.appium.listener.InstallThread;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 
 public class Main {
-	static AppiumDriver<WebElement> driver;
-	AndroidTool appium;
+	static AndroidDriver<MobileElement> driver;
+	mAndroidUtil appium;
 	// PageFlightFirstPage firstpage;
 	static PageManager pm;
 	public static String appurl = "/Users/user/Downloads/Elong_Trunk_9360_110.apk";

@@ -3,13 +3,15 @@
 <suite name="android suite" parallel="tests" verbose="1"
 	thread-count="5">
 
-	<parameter name="appurl" 
+	<!-- <parameter name="appurl" 
 		value="http://10.20.254.206/busapp/man.php?type=download&amp;filedir=apk/busandroid/Elong_Trunk_9360_117.apk" 
-		/>
+		/> -->
+	<parameter name="appurl" value="0" />
 	<parameter name="build" value="666" />
 	<parameter name="jenkinsHome" value="/Users/user" />
 	<parameter name="projectName" value="Documents" />
-	<!-- <parameter name="appurl" value="0" /> -->
+	<parameter name="isonline" value="true" />
+	
 	<!-- <test name="appium listener"> <classes> <class name="com.appium.listener.AppiumListener" 
 		/> </classes> </test> -->
 	<test name="flight uitest">

@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.MyDriver;
 import com.appium.base.ExcelData;
 

@@ -3,34 +3,28 @@ package com.elong.android.flight.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterSuite;
+
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.AppiumServer;
-import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
-import com.appium.base.UpdateApp;
 import com.appium.listener.AppiumListener;
-import com.appium.listener.DialogCheck;
-import com.appium.listener.InstallThread;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 
 public class BasicTestCase {
 
-	static AppiumDriver<WebElement> driver;
-	AndroidTool appium;
+	static AndroidDriver<MobileElement> driver;
+	mAndroidUtil appium;
 	static PageManager pm;
 	@BeforeTest
-	@Parameters(value={"appurl","jenkinsHome","projectName","build"})
-	public void beforeSuite(String appurl,String jenkinsHome,String projectName,String build) throws MalformedURLException, InterruptedException{
+	@Parameters(value={"appurl","jenkinsHome","projectName","build","isonline"})
+	public void beforeSuite(String appurl,String jenkinsHome,String projectName,String build,Boolean isonline) throws MalformedURLException, InterruptedException{
 		System.out.println("appurl:" + appurl);
 		System.out.println("jenkinsHome:" + jenkinsHome);
 		System.out.println("projectName:" + projectName);
@@ -38,9 +32,9 @@ public class BasicTestCase {
 		driver = new AppiumServer().androidDriverRun(appurl);
 		
 		pm = new PageManager(driver,jenkinsHome,projectName,build);
-		
-		int width = driver.manage().window().getSize().width;
-		int height = driver.manage().window().getSize().height;
+		mAndroidUtil.getSize(driver);
+		int width = mAndroidUtil.width;
+		int height = mAndroidUtil.height;
 		System.out.println(width + "-->" + height);
 		if(!appurl.equals("0")){
 			String pageSource = driver.getPageSource();
@@ -52,8 +46,7 @@ public class BasicTestCase {
 
 					break;
 				}else{
-					TouchAction touch = new TouchAction(driver);
-					
+					TouchAction touch = new TouchAction(driver);					
 					touch.press(4*width/5,3*height/5).moveTo(-width/2, 0).release().perform();
 					Thread.sleep(500);
 					System.out.println(i);
@@ -64,7 +57,8 @@ public class BasicTestCase {
 		
 		pm.getPageHome().clearDialog(width,height);
 		
-		pm.getPageHome().setPreLine();
+		if(!isonline)
+			pm.getPageHome().setPreLine();
 		
 		pm.getPageHome().gotoFlight();		
 	}
@@ -81,11 +75,11 @@ public class BasicTestCase {
 	public void setUp(){
 		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
 //		String cmd = "adb devices";
-		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 		try {
 			String line;
 			if((line = adbShellResult.readLine()) == null){
-				BufferedReader br = AndroidTool.getAdbShellResult("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
+				BufferedReader br = mAndroidUtil.getAdbShellResult("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
 				pm.getPageHome().gotoFlight();
 				System.out.println("开启APP");
 				
@@ -96,15 +90,15 @@ public class BasicTestCase {
 	}
 	
 	public void tearDown() {
-		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+		mAndroidUtil.executeAdbShell("adb shell am force-stop com.dp.android.elong");
 		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
 		for (int i = 0; i < 7; i++) {
 
-			BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+			BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 			try {
 				String line = null;
 				if ((line = adbShellResult.readLine()) != null) {
-					AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+					mAndroidUtil.executeAdbShell("adb shell am force-stop com.dp.android.elong");
 					System.out.println("关闭APP " + i);
 					try {
 						Thread.sleep(1000);
@@ -125,7 +119,7 @@ public class BasicTestCase {
 	public static void main(String[] args){
 
 		String cmd = "adb shell ps | grep \"uiautomator\"";
-		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 		try {
 			String line = adbShellResult.readLine();
 			System.err.println(line);
@@ -150,7 +144,7 @@ public class BasicTestCase {
 		for(int i = 0;i< 30; i++){
 			System.out.println(i);
 			String cmd = "adb shell pm list package|grep \"com.dp.android.elong\"";
-			BufferedReader bufferedReader = AndroidTool.getAdbShellResult(cmd);
+			BufferedReader bufferedReader = mAndroidUtil.getAdbShellResult(cmd);
 			
 			try {
 				String line = bufferedReader.readLine();

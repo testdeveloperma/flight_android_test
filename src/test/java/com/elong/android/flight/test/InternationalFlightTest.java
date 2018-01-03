@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.ExcelData;
 import com.appium.base.PageManager;
 
@@ -36,12 +36,9 @@ public class InternationalFlightTest extends BasicTestCase{
 
 	@Test(dataProvider = "InterCity",description="选择城市和日期搜索，进入航班列表")
 	public void test1(HashMap<String, String> data) throws InterruptedException, IOException {
-		pm.getPageFlightFirstPage().clearBoot();
-		//System.out.println(data.toString());
 		String departCity = String.valueOf(data.get("departCity"));
 		String arriveCity = String.valueOf(data.get("arriveCity"));
 		pm.getPageFlightFirstPage().searchInternationalFlight(departCity, arriveCity);
-		//flightListData = pm.getPageDomesticFlightList().getFlightListData();
 		
 	}
 	

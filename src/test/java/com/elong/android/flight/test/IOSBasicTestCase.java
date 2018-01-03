@@ -1,25 +1,19 @@
 package com.elong.android.flight.test;
 
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
-
-import elong.android.domesticflight.activity.PageFlightFirstPage;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 public class IOSBasicTestCase {
 
-	AppiumDriver driver;
-	AndroidTool appium;
+	AndroidDriver driver;
+	mAndroidUtil appium;
 //	PageFlightFirstPage firstpage;
 	PageManager pm;
 	@BeforeClass
@@ -27,7 +21,7 @@ public class IOSBasicTestCase {
 		driver=new MyDriver().iosDriverRun();
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 //		pm = new PageManager(driver,build);
-		appium=new AndroidTool(driver);
+		appium=new mAndroidUtil(driver);
 				
 		pm.getPageHome().gotoFlight();
 		//firstpage=new PageFlightFirstPage(driver);

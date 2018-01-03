@@ -3,39 +3,35 @@ package com.elong.android.flight.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterSuite;
+
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 import com.appium.base.MyDriver;
 import com.appium.base.PageManager;
 import com.appium.base.UpdateApp;
 import com.appium.listener.AppiumListener;
-import com.appium.listener.DialogCheck;
-import com.appium.listener.InstallThread;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 
 public class BasicTestCase2 {
 
-	static AppiumDriver<WebElement> driver;
-	AndroidTool appium;
+	static AndroidDriver<MobileElement> driver;
+	mAndroidUtil appium;
 //	PageFlightFirstPage firstpage;
 	static PageManager pm;
 	@BeforeTest
 	@Parameters(value={"appurl","jenkinsHome","projectName","build"})
 	public void beforeSuite(String appurl,String jenkinsHome,String projectName,String build) throws MalformedURLException, InterruptedException{
 		String force = "adb shell am force-stop io.appium.unlock";
-		AndroidTool.executeAdbShell(force);
+		mAndroidUtil.executeAdbShell(force);
 		
 		String start = "adb shell am start -W -n io.appium.unlock/.Unlock -a android.intent.action.Main -c android.intent.category.LAUNCHER -f 0x10200000";
-		AndroidTool.executeAdbShell(start);
+		mAndroidUtil.executeAdbShell(start);
 		
 		String packageName = "com.dp.android.elong";
 		if(appurl != null && !appurl.equals("")) {
@@ -43,7 +39,7 @@ public class BasicTestCase2 {
 			updateApp.install(packageName, appurl);
 		}
 		String uicmd = "adb shell am instrument -w -r   -e debug false -e class com.chengjunma.apk_install.InstrumentedTest com.chengjunma.apk_install.test/android.support.test.runner.AndroidJUnitRunner";
-		AndroidTool.executeAdbShell(uicmd);
+		mAndroidUtil.executeAdbShell(uicmd);
 		waitinstall();
 		
 		
@@ -99,11 +95,11 @@ public class BasicTestCase2 {
 	public void setUp(){
 		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
 //		String cmd = "adb devices";
-		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 		try {
 			String line;
 			if((line = adbShellResult.readLine()) == null){
-				BufferedReader br = AndroidTool.getAdbShellResult("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
+				BufferedReader br = mAndroidUtil.getAdbShellResult("adb shell am start -W -n com.dp.android.elong/com.elong.activity.others.AppGuidActivity");
 				pm.getPageHome().gotoFlight();
 				System.out.println("开启APP");
 				
@@ -114,15 +110,15 @@ public class BasicTestCase2 {
 	}
 	
 	public void tearDown() {
-		AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+		mAndroidUtil.executeAdbShell("adb shell am force-stop com.dp.android.elong");
 		String cmd = "adb shell ps |grep \"com.dp.android.elong\"";
 		for (int i = 0; i < 7; i++) {
 
-			BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+			BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 			try {
 				String line = null;
 				if ((line = adbShellResult.readLine()) != null) {
-					AndroidTool.executeAdbShell("adb shell am force-stop com.dp.android.elong");
+					mAndroidUtil.executeAdbShell("adb shell am force-stop com.dp.android.elong");
 					System.out.println("关闭APP " + i);
 					try {
 						Thread.sleep(1000);
@@ -143,7 +139,7 @@ public class BasicTestCase2 {
 	public static void main(String[] args){
 
 		String cmd = "adb shell ps | grep \"uiautomator\"";
-		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 		try {
 			String line = adbShellResult.readLine();
 			System.err.println(line);
@@ -168,7 +164,7 @@ public class BasicTestCase2 {
 		for(int i = 0;i< 30; i++){
 			System.out.println(i);
 			String cmd = "adb shell pm list package|grep \"com.dp.android.elong\"";
-			BufferedReader bufferedReader = AndroidTool.getAdbShellResult(cmd);
+			BufferedReader bufferedReader = mAndroidUtil.getAdbShellResult(cmd);
 			
 			try {
 				String line = bufferedReader.readLine();

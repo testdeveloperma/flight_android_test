@@ -5,13 +5,13 @@ import java.net.URL;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class MyDriver{
 	String deviceName;
 
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 	public String getDeviceName() {
 		return deviceName;
 	}
@@ -20,11 +20,11 @@ public class MyDriver{
 		this.deviceName = deviceName;
 	}
 
-	public AppiumDriver<WebElement> getDriver() {
+	public AndroidDriver<MobileElement> getDriver() {
 		return driver;
 	}
 
-	public void setDriver(AppiumDriver<WebElement> driver) {
+	public void setDriver(AndroidDriver<MobileElement> driver) {
 		this.driver = driver;
 	}
 
@@ -50,7 +50,7 @@ public class MyDriver{
 	
 
 
-	public  AppiumDriver<WebElement> androidDriverRun()
+	public  AndroidDriver<MobileElement> androidDriverRun()
 			throws MalformedURLException, InterruptedException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability("platformName", "Android");
@@ -70,12 +70,12 @@ public class MyDriver{
 				"com.elong.activity.others.AppGuidActivity");
 		cap.setCapability("unicodeKeyboard", true);
 		cap.setCapability("resetKeyboard", true);
-		this.driver = new AppiumDriver<WebElement>(new URL(
+		this.driver = new AndroidDriver<MobileElement>(new URL(
 				"http://127.0.0.1:4723/wd/hub"), cap);
 		return driver;
 	}
 	
-	public  AppiumDriver<WebElement> androidDriverRun2()
+	public  AndroidDriver<MobileElement> androidDriverRun2()
 			throws MalformedURLException, InterruptedException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability("platformName", "Android");
@@ -92,13 +92,13 @@ public class MyDriver{
 		cap.setCapability("unicodeKeyboard", true);
 		cap.setCapability("resetKeyboard", true);
 		System.out.println("我是4725");
-		this.driver = new AppiumDriver<WebElement>(new URL(
+		this.driver = new AndroidDriver<MobileElement>(new URL(
 				"http://127.0.0.1:4725/wd/hub"), cap);
 		return driver;
 	}
 
 	
-	public  AppiumDriver iosDriverRun()
+	public  AndroidDriver iosDriverRun()
 			throws MalformedURLException, InterruptedException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability("platformName", "IOS");
@@ -106,7 +106,7 @@ public class MyDriver{
 		cap.setCapability("deviceName", "iPhone 6s Plus");
 		cap.setCapability("bundleId", "com.elong.travel");
 		cap.setCapability("udid", "2680be7d55dda2597d57da7cadaa7b848bf08b18");
-		AppiumDriver driver = new AppiumDriver(new URL(
+		AndroidDriver driver = new AndroidDriver(new URL(
 				"http://127.0.0.1:4723/wd/hub"), cap);
 		return driver;
 	}

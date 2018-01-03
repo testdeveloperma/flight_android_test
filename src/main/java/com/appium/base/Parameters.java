@@ -35,7 +35,7 @@ public class Parameters {
 	}
 	public static String getPlatformVersion(){
 		String cmd = "adb shell getprop ro.build.version.release";
-		BufferedReader adbShellResult = AndroidTool.getAdbShellResult(cmd);
+		BufferedReader adbShellResult = mAndroidUtil.getAdbShellResult(cmd);
 		String version = null;
 		try {
 			version = adbShellResult.readLine();
@@ -75,7 +75,7 @@ public class Parameters {
 		Runtime run = Runtime.getRuntime();
 		try {
 			String cmd = "adb devices";
-			BufferedReader br = AndroidTool.getAdbShellResult(cmd);
+			BufferedReader br = mAndroidUtil.getAdbShellResult(cmd);
 			
 			String line = null;
 			while ((line = br.readLine()) != null) {

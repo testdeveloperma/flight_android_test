@@ -1,23 +1,22 @@
 package com.appium.listener;
 
-import org.openqa.selenium.WebElement;
-
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class InstallThread extends Thread {
 
 	public String appurl;
-	public AppiumDriver<WebElement> driver;
+	public AndroidDriver<MobileElement> driver;
 	public String getAppurl() {
 		return appurl;
 	}
 	public void setAppurl(String appurl) {
 		this.appurl = appurl;
 	}
-	public AppiumDriver<WebElement> getDriver() {
+	public AndroidDriver<MobileElement> getDriver() {
 		return driver;
 	}
-	public void setDriver(AppiumDriver<WebElement> driver) {
+	public void setDriver(AndroidDriver<MobileElement> driver) {
 		this.driver = driver;
 	}
 	

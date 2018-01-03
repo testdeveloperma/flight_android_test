@@ -2,18 +2,16 @@ package elong.android.domesticflight.activity;
 
 import java.util.List;
 
-import org.openqa.selenium.WebElement;
-
-import com.appium.base.AndroidTool;
+import com.appium.base.mAndroidUtil;
 
 import elong.android.domesticflight.bean.CabinDetailData;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class PageDomesticCabinDetail{
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication[@name=\"艺龙旅行\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton[4]")
 	@AndroidFindBy(id = "com.elong.android.flight:id/ll_cabin_item_book")
@@ -37,9 +35,9 @@ public class PageDomesticCabinDetail{
 	
 	private String project;
 	
-	public PageDomesticCabinDetail(AppiumDriver<WebElement> driver, String jenkinsHome,String project, String build) {
+	public PageDomesticCabinDetail(AndroidDriver<MobileElement> driver2, String jenkinsHome,String project, String build) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		this.driver = driver2;
 		this.jenkinsHome = jenkinsHome;
 		this.project = project;
 		this.build = build;
@@ -76,7 +74,7 @@ public class PageDomesticCabinDetail{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome,project,build,driver, "DomesticCabinDetail");
+			mAndroidUtil.takeScreenShot(jenkinsHome,project,build,driver, "DomesticCabinDetail");
 		}
 
 	}

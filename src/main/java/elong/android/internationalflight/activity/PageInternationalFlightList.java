@@ -1,15 +1,13 @@
 package elong.android.internationalflight.activity;
 
-import org.openqa.selenium.WebElement;
+import com.appium.base.mAndroidUtil;
 
-import com.appium.base.AndroidTool;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PageInternationalFlightList {
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id=\"com.elong.android.flight:id/iflightList\"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]")
 	MobileElement flight1;
@@ -29,7 +27,7 @@ public class PageInternationalFlightList {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "InternationalFlightList");
+			mAndroidUtil.takeScreenShot(jenkinsHome, project,build, driver, "InternationalFlightList");
 		}
 	}
 
@@ -40,7 +38,7 @@ public class PageInternationalFlightList {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "InternationalRoundFlightList");
+			mAndroidUtil.takeScreenShot(jenkinsHome, project,build, driver, "InternationalRoundFlightList");
 		}
 	}
 }

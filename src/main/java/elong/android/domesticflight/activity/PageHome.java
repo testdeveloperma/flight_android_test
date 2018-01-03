@@ -1,12 +1,10 @@
 package elong.android.domesticflight.activity;
 
-import org.openqa.selenium.WebElement;
+import com.appium.base.mAndroidUtil;
 
-import com.appium.base.AndroidTool;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
@@ -15,7 +13,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
  *
  */
 public class PageHome {
-	AppiumDriver<WebElement> driver;
+	AndroidDriver<MobileElement> driver;
 	// 线上包
 	// @AndroidFindBy(xpath="//android.widget.RelativeLayout[@resource-id=\"com.elong.android.home:id/home_module_flight\"]/android.view.View[1]")
 	@iOSFindBy(accessibility = "homeItemFlight.png")
@@ -34,9 +32,9 @@ public class PageHome {
 
 	private String project;
 
-	public PageHome(AppiumDriver<WebElement> driver, String jenkinsHome,String project, String build) {
+	public PageHome(AndroidDriver<MobileElement> driver2, String jenkinsHome,String project, String build) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		this.driver = driver2;
 		this.jenkinsHome = jenkinsHome;
 		this.project = project;
 		this.build = build;
@@ -95,7 +93,7 @@ public class PageHome {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			AndroidTool.takeScreenShot(jenkinsHome, project,build, driver, "homepage");
+			mAndroidUtil.takeScreenShot(jenkinsHome, project,build, driver, "homepage");
 
 		}
 	}
